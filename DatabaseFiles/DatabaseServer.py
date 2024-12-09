@@ -110,6 +110,24 @@ def get_quarterly_earnings_data():
     cursor.execute(
         "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time, ticker FROM public.quarterly_earnings"
     )
+    data = cursor.fetchall()
+    conn.close()
+
+    quarterly_earnings_data = [
+        {
+            "fiscal_date_ending": str(row[0]),
+            "reported_date": str(row[1]),
+            "reported_eps": float(row[2]),
+            "estimated_eps": float(row[3]),
+            "surprise": float(row[4]),
+            "surprise_percentage": float(row[5]),
+            "report_time": str(row[6]),
+            "ticker": str(row[7])
+        }
+        for row in data
+    ]
+
+    return jsonify(quarterly_earnings_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
