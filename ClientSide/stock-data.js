@@ -2,10 +2,9 @@
 
 async function fetchStockPrices() {
     try {
-        const response = await fetch(`http://127.0.0.1:5000/stock-data?tickers=AAPL,GOOGL,MSFT`);
+        const response = await fetch('http://127.0.0.1:5000/stock-data?tickers=AAPL,GOOGL,MSFT');
         const stockPrices = await response.json();
-        
-        // Kontrollera att vi faktiskt fick data
+        console.log(stockPrices); // Kontrollera om data hämtas korrekt
         if (stockPrices && stockPrices.length > 0) {
             displayStockPrices(stockPrices);
         } else {
@@ -16,6 +15,7 @@ async function fetchStockPrices() {
     }
 }
 
+fetchStockPrices();
 // Funktion för att visa aktieinformation i HTML
 function displayStockPrices(stockPrices) {
     const stockTableBody = document.getElementById('stockTableBody');
