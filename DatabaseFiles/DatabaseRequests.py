@@ -13,6 +13,15 @@ conn = psycopg2.connect(
 )
 cursor = conn.cursor()
 
+#Check for existing tickers
+def get_existing_tickers(table_name):
+    cursor.execute(f"SELECT DISTINCT ticker FROM {table_name}")
+    return {row[0] for row in cursor.fetchall()}
+
+# Kontrollera vilka tickers som behöver hämtas
+existing_stock_prices = get_existing_tickers("stock_prices")
+tickers_to_fetch = [ticker for ticker in tickers if ticker not in existing_stock_prices]
+
 # Funktion för att hämta data från API
 def fetch_data(url):
     response = requests.get(url)
