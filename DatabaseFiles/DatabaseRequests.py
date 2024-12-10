@@ -1,4 +1,4 @@
-import requests 
+import requests
 import psycopg2
 
 # List of tickers
