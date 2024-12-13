@@ -1,17 +1,83 @@
+body {
+    background-color: white;
+}
+
 h1 {
     text-align: center;
     position: absolute;
     top: 500px;
 }
 
+.info {
+    text-align: center;
+    position: absolute;
+    top: 600px;
+}
+
+/* Navigation Bar */
 #menuSection {
     position: relative;
 }
 
-#stockprices {
+#homepage {
     position: absolute;
-    top: 100px;
+    top: 25px;
     left: 50px;
     height: 50px;
     width: 50px;
 }
+
+#stockprices {
+    position: absolute;
+    top: 25px;
+    left: 170px;
+    height: 50px;
+    width: 50px;
+}
+
+#annualearnings {
+    position: absolute;
+    top: 25px;
+    left: 300px;
+    height: 50px;
+    width: 50px;
+}
+
+#quarterlyearnings {
+    position: absolute;
+    top: 25px;
+    left: 450px;
+    height: 50px;
+    width: 50px;
+}
+
+#user {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    height: auto;
+    width: 65px;
+}
+
+/*Stock table body*/
+#stockTable {
+    position: relative;
+    border-spacing: 20px; 
+    border-collapse: separate; 
+    top: 100px;
+    left: 275px;
+    font-size: large;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#stockTable tr:nth-child(even){background-color: lightblue;}
+
+#stockTable th, #stockTable td {
+    padding: 20px; 
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    color: black;
+}
+
