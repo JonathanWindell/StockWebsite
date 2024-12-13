@@ -102,8 +102,8 @@ def get_annual_earnings_data():
     return jsonify(annual_earnings_data)
 
 #Quarterly earnings data
-@app.route('/quarterly-earnings-data', methods=['GET'])
-def get_quarterly_earnings_data():
+@app.route('/quarterly-earnings-aapl', methods=['GET'])
+def get_quarterly_earnings_aapl():
     conn = connect_to_db()
     cursor = conn.cursor()
     
@@ -113,7 +113,7 @@ def get_quarterly_earnings_data():
     data = cursor.fetchall()
     conn.close()
 
-    quarterly_earnings_data = [
+    quarterly_earnings_aapl = [
         {
             "fiscal_date_ending": str(row[0]),
             "reported_date": str(row[1]),
@@ -127,7 +127,63 @@ def get_quarterly_earnings_data():
         for row in data
     ]
 
-    return jsonify(quarterly_earnings_data)
+    return jsonify(quarterly_earnings_aapl)
+
+
+@app.route('/quarterly-earnings-amzn', methods=['GET'])
+def get_quarterly_earnings_amzn():
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time, ticker FROM public.quarterly_earnings"
+    )
+    data = cursor.fetchall()
+    conn.close()
+
+    quarterly_earnings_amzn = [
+        {
+            "fiscal_date_ending": str(row[0]),
+            "reported_date": str(row[1]),
+            "reported_eps": float(row[2]),
+            "estimated_eps": float(row[3]),
+            "surprise": float(row[4]),
+            "surprise_percentage": float(row[5]),
+            "report_time": str(row[6]),
+            "ticker": str(row[7])
+        }
+        for row in data
+    ]
+
+    return jsonify(quarterly_earnings_amzn)
+
+@app.route('/quarterly-earnings-googl', methods=['GET'])
+def get_quarterly_earnings_googl():
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time, ticker FROM public.quarterly_earnings"
+    )
+    data = cursor.fetchall()
+    conn.close()
+
+    quarterly_earnings_googl = [
+        {
+            "fiscal_date_ending": str(row[0]),
+            "reported_date": str(row[1]),
+            "reported_eps": float(row[2]),
+            "estimated_eps": float(row[3]),
+            "surprise": float(row[4]),
+            "surprise_percentage": float(row[5]),
+            "report_time": str(row[6]),
+            "ticker": str(row[7])
+        }
+        for row in data
+    ]
+
+    return jsonify(quarterly_earnings_googl)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
