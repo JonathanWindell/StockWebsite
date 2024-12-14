@@ -36,28 +36,11 @@ function displayStockPrices(stockPrices) {
     });
 }
 
-function populateDropdown(stockPrices) {
-    const dropdownContent = document.getElementById('myDropdown');
-    dropdownContent.innerHTML = '';
 
-    const shownTickers = new Set();
-
-    stockData.forEach(stock => {
-        if (!shownTickers.has(stock.ticker)) {
-            shownTickers.add(stock.ticker);
-
-            const link = document.createElement('a');
-            link.textContent = stock.ticker;
-            link.href = '#';
-            link.onclick = () => {
-                const filteredStocks = stockData.filter(s => s.ticker === stock.ticker);
-                const filteredEarnings = earningsData.filter(e => e.ticker === stock.ticker);
-                showStockAndEarningsData(filteredStocks, filteredEarnings);
-            };
-            dropdownContent.appendChild(link);
-        }
-    });
+function showStockData(stocks) {
+    
 }
+    
 
 
 

@@ -7,25 +7,28 @@
     <link rel="stylesheet" href="Client.css">
 </head>
 <body>
+<!--Menu section-->
     <h1>Stock Prices</h1>
-    <section id="menuSection">
-        <a href="Homepage.html">
-            <img src="Pictures/HomeLogo2.png" alt="HomePage" id="homepage">
-        </a>
-        <a href="StockPrices.html">
-            <img src="Pictures/market-research.png" alt="StockPrices" id="stockprices">
-        </a>
-        <a href="AnnualEarnings.html">
-            <img src="Pictures/calendar-symbol.svg" alt="AnnualEarnings" id="annualearnings">
-        </a>
-        <a href="QuarterlyEarnings.html">
-            <img src="Pictures/financial-report.png" alt="QuarterlyEarnings" id="quarterlyearnings">
-        </a>
-        <a href="User.html">
-            <img src="Pictures/ProfilePicture1.png" alt="User" id="user">
-        </a>
-    </section>
-    <table id="stockTable" class="table">
+<section id="menuSection">
+    <a href="Homepage.html">
+        <img src="Pictures/HomeLogo2.png" alt="HomePage" id="homepage">
+    </a>
+    <a href="StockPrices.html">
+        <img src="Pictures/market-research.png" alt="StockPrices" id="stockprices">
+    </a>
+    <a href="AnnualEarnings.html">
+        <img src="Pictures/calendar-symbol.svg" alt="AnnualEarnings" id="annualearnings">
+    </a>
+    <a href="QuarterlyEarnings.html">
+        <img src="Pictures/financial-report.png" alt="QuarterlyEarnings" id="quarterlyearnings">
+    </a>
+    <a href="User.html">
+         <img src="Pictures/ProfilePicture1.png" alt="User" id="user">
+    </a>
+</section>
+<!--Stock table-->
+<section id="DashboardStocks">
+    <table id="stockTable">
         <thead>
             <tr>
                 <th>Stock</th>
@@ -41,7 +44,16 @@
             <!-- Dynamiskt genererade rader -->
         </tbody>
     </table>
-
+</section>
+<section id="StockMenu">
+    <div class="stockChoices">
+        <button id="AAPL">AAPL</button>
+        <button id="GOOGL">GOOGL</button>
+        <button id="MSFT">MSFT</button>
+        <button id="TSLA">TSLA</button>
+        <button id="AMZN">AMZN</button>
+        <button id="NVDA">META</button>
+</section>
     <script src="stock-data.js"></script>
 </body>
 </html> 
