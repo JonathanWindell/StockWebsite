@@ -2,7 +2,7 @@
 
 async function fetchStockPrices() {
     try {
-        const response = await fetch('http://127.0.0.1:5000/stock-data?tickers=AAPL,GOOGL,MSFT');
+        const response = await fetch('http://127.0.0.1:5000/stock-data?tickers=AAPL,GOOGL,MSFT,NVDA,TSLA,AMZN');
         const stockPrices = await response.json();
         console.log(stockPrices); // Kontrollera om data hämtas korrekt
         if (stockPrices && stockPrices.length > 0) {

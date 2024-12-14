@@ -3,9 +3,10 @@ body {
 }
 
 h1 {
-    text-align: center;
-    position: absolute;
-    top: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 200px;
 }
 
 .info {
@@ -17,43 +18,30 @@ h1 {
 /* Navigation Bar */
 #menuSection {
     position: relative;
+    top: 0;
+    left: 0;
+    background-color: aliceblue;
+    border-radius: 10px;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
 }
 
-#homepage {
+#homepage, #stockprices, #annualearnings, #quarterlyearnings {
     position: absolute;
-    top: 25px;
-    left: 50px;
+    top: 20px;
     height: 50px;
     width: 50px;
 }
 
-#stockprices {
-    position: absolute;
-    top: 25px;
-    left: 170px;
-    height: 50px;
-    width: 50px;
-}
-
-#annualearnings {
-    position: absolute;
-    top: 25px;
-    left: 300px;
-    height: 50px;
-    width: 50px;
-}
-
-#quarterlyearnings {
-    position: absolute;
-    top: 25px;
-    left: 450px;
-    height: 50px;
-    width: 50px;
-}
+#homepage { left: 50px; }
+#stockprices { left: 170px; }
+#annualearnings { left: 300px; }
+#quarterlyearnings { left: 450px; }
 
 #user {
     position: absolute;
-    top: 20px;
+    top: 16px;
     right: 50px;
     height: auto;
     width: 65px;
@@ -64,14 +52,16 @@ h1 {
     position: relative;
     border-spacing: 20px; 
     border-collapse: separate; 
-    top: 100px;
-    left: 275px;
+    top: 80px;
+    left: 250px;
     font-size: large;
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
+    background-color: aliceblue;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow-x: auto;
 }
-
-#stockTable tr:nth-child(even){background-color: lightblue;}
 
 #stockTable th, #stockTable td {
     padding: 20px; 
@@ -79,5 +69,9 @@ h1 {
     padding-bottom: 12px;
     text-align: left;
     color: black;
+}
+
+#stockTable tr {
+    border-bottom: 1px solid black;
 }
 
