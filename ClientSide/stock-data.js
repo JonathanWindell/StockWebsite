@@ -37,9 +37,47 @@ function displayStockPrices(stockPrices) {
 }
 
 
-function showStockData(stocks) {
-    
+function showStockData(stockPrices) {
+    // Hämta alla knappar
+    const buttons = document.querySelectorAll("#StockMenu button");
+
+    // Lägg till en klick-händelse för varje knapp
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const ticker = button.id; // Hämta ticker från knappens id
+            const stockTableBody = document.getElementById('stockTableBody');
+            stockTableBody.innerHTML = ''; // Rensa tabellen
+
+            // Filtrera aktiedata för den valda tickern
+            const filteredStock = stockPrices.filter(stock => stock.ticker === ticker);
+
+            // Visa endast den valda aktiens data
+            filteredStock.forEach(stock => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${stock.ticker}</td>
+                    <td>${stock.open_price}</td>
+                    <td>${stock.high_price}</td>
+                    <td>${stock.low_price}</td>
+                    <td>${stock.close_price}</td>
+                    <td>${stock.volume}</td>
+                    <td>${stock.latest_date}</td>
+                `;
+                stockTableBody.appendChild(row);
+            });
+
+            // Om ingen data hittas för aktien
+            if (filteredStock.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td colspan="7">Ingen data hittades för ${ticker}</td>`;
+                stockTableBody.appendChild(row);
+            }
+        });
+    });
 }
+
+// Anropa showStockData efter att data har hämtats
+fetchStockPrices().then(stockPrices => showStockData(stockPrices));
     
 
 
