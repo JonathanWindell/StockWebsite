@@ -25,18 +25,29 @@
             <img src="Pictures/ProfilePicture1.png" alt="User" id="user">
         </a>
     </section>
-    <table id="annualEarningsTable" class="annual-earnings-table">
-        <thead>
-            <tr>
-                <th>Ticker</th>
-                <th>Fiscal date ending</th>
-                <th>Reported EPS</th>
-            </tr>
-        </thead>
-        <tbody id="eaningsTableBody">
-            <!-- Dynamiskt genererade rader -->
-        </tbody>
-    </table>
+<table id="annualEarningsTable" class="annual-earnings-table">
+    <thead>
+        <tr>
+            <th>Ticker</th>
+            <th>Fiscal date ending</th>
+            <th>Reported EPS</th>
+        </tr>
+    </thead>
+    <tbody id="earningsTableBody">
+        <!-- Dynamiskt genererade rader -->
+    </tbody>
+</table>
+<section id="EarningsMenu">
+    <div class="annualEarningsChoices">
+        <button id="btn-earnings-AAPL" data-ticker="AAPL">AAPL</button>
+        <button id="btn-earnings-GOOGL" data-ticker="GOOGL">GOOGL</button>
+        <button id="btn-earnings-MSFT" data-ticker="MSFT">MSFT</button>
+        <button id="btn-earnings-TSLA" data-ticker="TSLA">TSLA</button>
+        <button id="btn-earnings-AMZN" data-ticker="AMZN">AMZN</button>
+        <button id="btn-earnings-NVDA" data-ticker="NVDA">NVDA</button>
+        <button id="btn-earnings-IBM" data-ticker="IBM">IBM</button>
+    </div>
+</section>
 
     <script src="stock-data.js"></script>
 </body>

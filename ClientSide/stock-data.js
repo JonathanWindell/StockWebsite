@@ -1,6 +1,6 @@
 //Show stock prices
 
-async function fetchData() {
+async function fetchStockPrices() {
     try {
         const response = await fetch('http://127.0.0.1:5000/stock-data?tickers=AAPL,GOOGL,MSFT,NVDA,TSLA,AMZN');
         const stockPrices = await response.json();
@@ -14,18 +14,20 @@ async function fetchData() {
     } catch (error) {
         console.error('Could not fetch stock data:', error);
     }
-    try {
-        const response = await fetch('http://127.0.0.1:5000/annual-earnings-data?tickers=AAPL,MSFT,GOOGL,AMZN,NVDA,IBM,TSLA');
-        const annualEarningsData = await response.json();
-        console.log('Fetched data:', annualEarningsData); 
-        if (annualEarningsData && annualEarningsData.length > 0) {
-            displayEarningsData(annualEarningsData);
-        } else {
-            console.error('No annual earnings data found.');
+    (async function fetchAnnualEarnings() {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/annual-earnings-data?tickers=AAPL,MSFT,GOOGL,AMZN,NVDA,IBM,TSLA');
+            const annualEarningsData = await response.json();
+            console.log('Fetched data:', annualEarningsData);
+            if (annualEarningsData && annualEarningsData.length > 0) {
+                displayEarningsData(annualEarningsData);
+            } else {
+                console.error('No annual earnings data found.');
+            }
+        } catch (error) {
+            console.error('Could not fetch annual earnings:', error);
         }
-    } catch (error) {
-        console.error('Could not fetch annual earnings:', error);
-    }
+    })();
 }
 
 
@@ -52,12 +54,12 @@ function displayEarningsData(annualEarningsData) {
     const earningsTableBody = document.getElementById('earningsTableBody');
     earningsTableBody.innerHTML = '';
 
-    annualEarningsData.forEach(earnings => {
+    annualEarningsData.forEach(annualEarningsData => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${earnings.ticker}</td>
-            <td>${earnings.fiscal_date_ending}</td>
-            <td>${earnings.reporteds_eps}</td>
+            <td>${annualEarningsData.ticker}</td>
+            <td>${annualEarningsData.fiscal_date_ending}</td>
+            <td>${annualEarningsData.reported_eps}</td>
         `;
         earningsTableBody.appendChild(row);
     });
@@ -69,7 +71,7 @@ function showStockData(stockPrices) {
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
-            const ticker = button.id; 
+            const ticker = button.dataset.ticker; 
             console.log('Vald ticker:', ticker); 
             const stockTableBody = document.getElementById('stockTableBody');
             stockTableBody.innerHTML = ''; 
@@ -95,6 +97,38 @@ function showStockData(stockPrices) {
                 const row = document.createElement('tr');
                 row.innerHTML = `<td colspan="7">Ingen data hittades för ${ticker}</td>`;
                 stockTableBody.appendChild(row);
+            }
+        });
+    });
+}
+
+function showEarningsData(annualEarningsData) {
+    const buttons = document.querySelectorAll("#EarningsMenu button");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const ticker = button.dataset.ticker;
+            console.log('Vald ticker:', ticker);
+            const earningsTableBody = document.getElementById('earningsTableBody');
+            earningsTableBody.innerHTML = '';
+
+            const filteredEarnings = annualEarningsData.filter(earnings => earnings.ticker === ticker);
+            console.log('Filtered data:', filteredEarnings);
+
+            if (filteredEarnings.length > 0) {
+                filteredEarnings.forEach(annualEarningsData => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${annualEarningsData.ticker}</td>
+                        <td>${annualEarningsData.fiscal_date_ending}</td>
+                        <td>${annualEarningsData.reported_eps}</td>
+                    `;
+                    earningsTableBody.appendChild(row);
+                });
+            } else {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td colspan="3">Ingen data hittades för ${ticker}</td>`;
+                earningsTableBody.appendChild(row);
             }
         });
     });
