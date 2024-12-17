@@ -78,8 +78,8 @@ h1 {
 /*Stock menu*/
 #StockMenu {
     padding-left: 20px;
-    position: relative;
-    top: 50px;
+    position: absolute;
+    top: 265px;
 }
 
 .stockChoices button {
