@@ -54,17 +54,16 @@ function displayEarningsData(annualEarningsData) {
     const earningsTableBody = document.getElementById('earningsTableBody');
     earningsTableBody.innerHTML = '';
 
-    annualEarningsData.forEach(annualEarningsData => {
+    annualEarningsData.forEach(earnings => {  
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${annualEarningsData.ticker}</td>
-            <td>${annualEarningsData.fiscal_date_ending}</td>
-            <td>${annualEarningsData.reported_eps}</td>
+            <td>${earnings.ticker}</td>
+            <td>${earnings.fiscal_date_ending}</td>
+            <td>${earnings.reported_eps}</td>
         `;
         earningsTableBody.appendChild(row);
     });
 }
-
 
 function showStockData(stockPrices) {
     const buttons = document.querySelectorAll("#StockMenu button");
@@ -80,7 +79,7 @@ function showStockData(stockPrices) {
             console.log('Filtrerad data:', filteredStock); 
 
             if (filteredStock.length > 0) {
-                filteredStock.forEach(stock => {
+                filteredStock.forEach(stock => { 
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${stock.ticker}</td>
@@ -112,16 +111,16 @@ function showEarningsData(annualEarningsData) {
             const earningsTableBody = document.getElementById('earningsTableBody');
             earningsTableBody.innerHTML = '';
 
-            const filteredEarnings = annualEarningsData.filter(earnings => earnings.ticker === ticker);
+            const filteredEarnings = annualEarningsData.filter(earnings => earnings.ticker === ticker); 
             console.log('Filtered data:', filteredEarnings);
 
             if (filteredEarnings.length > 0) {
-                filteredEarnings.forEach(annualEarningsData => {
+                filteredEarnings.forEach(earnings => { 
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${annualEarningsData.ticker}</td>
-                        <td>${annualEarningsData.fiscal_date_ending}</td>
-                        <td>${annualEarningsData.reported_eps}</td>
+                        <td>${earnings.ticker}</td>
+                        <td>${earnings.fiscal_date_ending}</td>
+                        <td>${earnings.reported_eps}</td>
                     `;
                     earningsTableBody.appendChild(row);
                 });
