@@ -99,3 +99,32 @@ h1 {
     background-color: white; 
 }
 
+/*Annualearnings table body*/
+#annualEarningsTable {
+    position: relative;
+    border-spacing: 20px; 
+    border-collapse: separate; 
+    top: 80px;
+    left: 50%;
+    font-size: large;
+    width: 50%;
+    border-collapse: collapse;
+    background-color: aliceblue;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+#annualEarningsTable th, #annualEarningsTable td {
+    padding: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    color: black;
+}
+
+#annualEarningsTable tr {
+    border-bottom: 1px solid black;
+}
+
+
