@@ -1,20 +1,33 @@
 //Show stock prices
 
-async function fetchStockPrices() {
+async function fetchData() {
     try {
         const response = await fetch('http://127.0.0.1:5000/stock-data?tickers=AAPL,GOOGL,MSFT,NVDA,TSLA,AMZN');
         const stockPrices = await response.json();
-        console.log('Hämtad data:', stockPrices); 
+        console.log('Fetched data:', stockPrices); 
         if (stockPrices && stockPrices.length > 0) {
             displayStockPrices(stockPrices);
             showStockData(stockPrices);
         } else {
-            console.error('Ingen aktiedata hittades.');
+            console.error('No stock data found.');
         }
     } catch (error) {
-        console.error('Kunde inte hämta aktiedata:', error);
+        console.error('Could not fetch stock data:', error);
+    }
+    try {
+        const response = await fetch('http://127.0.0.1:5000/annual-earnings-data?tickers=AAPL,MSFT,GOOGL,AMZN,NVDA,IBM,TSLA');
+        const annualEarningsData = await response.json();
+        console.log('Fetched data:', annualEarningsData); 
+        if (annualEarningsData && annualEarningsData.length > 0) {
+            displayEarningsData(annualEarningsData);
+        } else {
+            console.error('No annual earnings data found.');
+        }
+    } catch (error) {
+        console.error('Could not fetch annual earnings:', error);
     }
 }
+
 
 function displayStockPrices(stockPrices) {
     const stockTableBody = document.getElementById('stockTableBody');
@@ -34,6 +47,22 @@ function displayStockPrices(stockPrices) {
         stockTableBody.appendChild(row);
     });
 }
+
+function displayEarningsData(annualEarningsData) {
+    const earningsTableBody = document.getElementById('earningsTableBody');
+    earningsTableBody.innerHTML = '';
+
+    annualEarningsData.forEach(earnings => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${earnings.ticker}</td>
+            <td>${earnings.fiscal_date_ending}</td>
+            <td>${earnings.reporteds_eps}</td>
+        `;
+        earningsTableBody.appendChild(row);
+    });
+}
+
 
 function showStockData(stockPrices) {
     const buttons = document.querySelectorAll("#StockMenu button");
