@@ -31,6 +31,41 @@ async function fetchStockPrices() {
     })();
 }
 
+
+function displayStockPrices(stockPrices) {
+    const stockTableBody = document.getElementById('stockTableBody');
+    stockTableBody.innerHTML = ''; 
+
+    stockPrices.forEach(stock => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${stock.ticker}</td>
+            <td>${stock.open_price}</td>
+            <td>${stock.high_price}</td>
+            <td>${stock.low_price}</td>
+            <td>${stock.close_price}</td>
+            <td>${stock.volume}</td>
+            <td>${stock.latest_date}</td>
+        `;
+        stockTableBody.appendChild(row);
+    });
+}
+
+function displayEarningsData(annualEarningsData) {
+    const earningsTableBody = document.getElementById('earningsTableBody');
+    earningsTableBody.innerHTML = '';
+
+    annualEarningsData.forEach(annualEarnings => {  
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${annualEarnings.ticker}</td>
+            <td>${annualEarnings.fiscal_date_ending}</td>
+            <td>${annualEarnings.reported_eps}</td>
+        `;
+        earningsTableBody.appendChild(row);
+    });
+}
+
 async function quarterlyEarningsAAPL() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-aapl');
@@ -135,73 +170,6 @@ async function quarterlyEarningsAMZN() {
         console.error('Could not fetch quarterly earnings:', error);
     }
 }
-
-
-
-function displayStockPrices(stockPrices) {
-    const stockTableBody = document.getElementById('stockTableBody');
-    stockTableBody.innerHTML = ''; 
-
-    stockPrices.forEach(stock => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${stock.ticker}</td>
-            <td>${stock.open_price}</td>
-            <td>${stock.high_price}</td>
-            <td>${stock.low_price}</td>
-            <td>${stock.close_price}</td>
-            <td>${stock.volume}</td>
-            <td>${stock.latest_date}</td>
-        `;
-        stockTableBody.appendChild(row);
-    });
-}
-
-function displayEarningsData(annualEarningsData) {
-    const earningsTableBody = document.getElementById('earningsTableBody');
-    earningsTableBody.innerHTML = '';
-
-    annualEarningsData.forEach(annualEarnings => {  
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${annualEarnings.ticker}</td>
-            <td>${annualEarnings.fiscal_date_ending}</td>
-            <td>${annualEarnings.reported_eps}</td>
-        `;
-        earningsTableBody.appendChild(row);
-    });
-}
-
-document.querySelectorAll('.stock-button').forEach(button => {
-    button.addEventListener('click', async () => {
-        const stock = button.getAttribute('data-stock'); // Hämta aktiens ticker
-        const tableBody = document.getElementById('earnings-table-body');
-        tableBody.innerHTML = ''; // Rensa tabellen
-
-        try {
-            // Hämta data från servern
-            const response = await fetch(`http://127.0.0.1:5000/quarterly-earnings/${stock}`);
-            const data = await response.json();
-
-            // Uppdatera tabellen med data
-            data.forEach(quarterlyEarnings => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${quarterlyEarnings.fiscal_date_ending}</td>
-                    <td>${quarterlyEarnings.reported_date}</td>
-                    <td>${quarterlyEarnings.reported_eps}</td>
-                    <td>${quarterlyEarnings.estimated_eps}</td>
-                    <td>${quarterlyEarnings.surprise}</td>
-                    <td>${quarterlyEarnings.surprise_percentage}</td>
-                    <td>${quarterlyEarnings.report_time}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    });
-});
 
 
 function showStockData(stockPrices) {
