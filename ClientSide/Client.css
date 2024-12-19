@@ -165,22 +165,26 @@ h1 {
     font-size: large;
     width: 35%; 
     border-collapse: collapse;
-    background-color: aliceblue;
+    background-color: #454545;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     overflow-x: auto;
 }
 
 #annualEarningsTable th, #annualEarningsTable td {
-    padding: 20px;
+    padding: 20px; 
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    color: black;
+    color: white;
 }
 
 #annualEarningsTable tr {
     border-bottom: 1px solid black;
+}
+
+#annualEarningsTable tr:hover {
+    background-color: #28282b; 
 }
 
 #EarningsMenu {
@@ -192,21 +196,30 @@ h1 {
 }
 
 .annualEarningsChoices button {
-    display: inline-block; 
-    padding: 10px 20px;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
     font-size: 16px;
     font-weight: bold;
-    background-color: aliceblue;
-    border: 1px solid #ccc;
+    background-color: transparent;
+    border: 2px solid #ccc; 
+    color: white; 
     cursor: pointer;
     border-radius: 10px;
-    width: 150px; 
+    width: 150px;
+    height: 50px;
     margin-bottom: 10px;
-    margin-right: 20px; 
+    margin-right: 20px;
+    text-align: center;
+    gap: 10px;
+    transition: background-color 0.3s, color 0.3s; 
 }
 
 .annualEarningsChoices button:hover {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: #ccc;
+    border-color: white; 
 }
 
 #quarterlyEarningsAAPLTable {
@@ -218,22 +231,26 @@ h1 {
     font-size: large;
     width: 54%;
     border-collapse: collapse;
-    background-color: aliceblue;
+    background-color: #454545;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     overflow-x: auto;
 }
 
 #quarterlyEarningsAAPLTable th, #quarterlyEarningsAAPLTable td {
-    padding: 20px;
+    padding: 20px; 
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    color: black;
+    color: white;
 }
 
 #quarterlyEarningsAAPLTable tr {
     border-bottom: 1px solid black;
+}
+
+#quarterlyEarningsAAPLTable tr:hover {
+    background-color: #28282b; 
 }
 
 
