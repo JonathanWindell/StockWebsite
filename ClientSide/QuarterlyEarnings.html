@@ -7,27 +7,40 @@
     <link rel="stylesheet" href="Client.css">
 </head>
 <body>
-    <h1>Aktiedata</h1>
-    <section id="menuSection">
-        <a href="Homepage.html">Homepage</a>
-    </section>
-    <table id="stockTable" class="table">
-        <thead>
-            <tr>
-                <th>Ticker</th>
-                <th>Öppningspris</th>
-                <th>Högsta pris</th>
-                <th>Lägsta pris</th>
-                <th>Stängningspris</th>
-                <th>Volym</th>
-                <th>Senaste datum</th>
-            </tr>
-        </thead>
-        <tbody id="stockTableBody">
+    <h1>Quarterly Earnings</h1>
+<section id="menuSection">
+    <a href="Homepage.html">
+        <img src="Pictures/HomeLogo2.png" alt="HomePage" id="homepage">
+    </a>
+    <a href="StockPrices.html">
+        <img src="Pictures/market-research.png" alt="StockPrices" id="stockprices">
+    </a>
+    <a href="AnnualEarnings.html">
+        <img src="Pictures/calendar-symbol.svg" alt="AnnualEarnings" id="annualearnings">
+    </a>
+    <a href="QuarterlyEarnings.html">
+        <img src="Pictures/financial-report.png" alt="QuarterlyEarnings" id="quarterlyearnings">
+    </a>
+    <a href="User.html">
+        <img src="Pictures/ProfilePicture1.png" alt="User" id="user">
+    </a>
+</section>
+<table id="stockTable" class="table">
+    <thead>
+        <tr>
+            <th>Fiscal date ending</th>
+            <th>Reported date</th>
+            <th>Reported eps</th>
+            <th>Estimated eps</th>
+            <th>Surprise</th>
+            <th>Surprise percentage</th>
+            <th>Report time</th>
+        </tr>
+    </thead>
+        <tbody id="quarterlyEarningsAAPLTableBody">
             <!-- Dynamiskt genererade rader -->
         </tbody>
-    </table>
-
+</table>
     <script src="stock-data.js"></script>
 </body>
 </html> 

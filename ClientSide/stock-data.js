@@ -31,6 +31,21 @@ async function fetchStockPrices() {
     })();
 }
 
+async function quarterlyEarningsAAPL() {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-aapl');
+        const quarterlyEarningsAAPL = await response.json();
+        console.log('Fetched data:', quarterlyEarningsAAPL);
+        if (quarterlyEarningsAAPL && quarterlyEarningsAAPL.length > 0) {
+            displayQuarterlyEarningsAAPL(quarterlyEarningsAAPL);
+        } else {
+            console.error('No quarterly earnings data found.');
+        }
+    } catch (error) {
+        console.error('Could not fetch quarterly earnings:', error);
+    }
+}
+
 
 function displayStockPrices(stockPrices) {
     const stockTableBody = document.getElementById('stockTableBody');
@@ -65,6 +80,26 @@ function displayEarningsData(annualEarningsData) {
         earningsTableBody.appendChild(row);
     });
 }
+
+function displayQuarterlyEarningsAAPL(quarterlyEarningsAAPL) {
+    const quarterlyEarningsAAPLTableBody = document.getElementById('quarterlyEarningsAAPLTableBody');
+    quarterlyEarningsAAPLTableBody.innerHTML = '';
+
+    quarterlyEarningsAAPL.forEach(earnings => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${earnings.fiscal_date_ending}</td>
+            <td>${earnings.reported_date}</td>
+            <td>${earnings.reported_eps}</td>
+            <td>${earnings.estimated_eps}</td>
+            <td>${earnings.surprise}</td>
+            <td>${earnings.surprise_percentage}</td>
+            <td>${earnings.report.time}</td>
+        `;
+        quarterlyEarningsAAPLTableBody.appendChild(row);
+    });
+}
+
 
 function showStockData(stockPrices) {
     const buttons = document.querySelectorAll("#StockMenu button");
@@ -134,47 +169,9 @@ function showEarningsData(annualEarningsData) {
     });
 }
 
-//Använda denna funktionen?
-/*
-function displayEvery12thStockPrice(stockPrices) {
-    const stockTableBody = document.getElementById('stockTableBody');
-    stockTableBody.innerHTML = ''; // Rensa tidigare innehåll i tabellen
-
-    const groupedData = {};
-
-    // Gruppera aktiedata per ticker
-    stockPrices.forEach(stock => {
-        if (!groupedData[stock.ticker]) {
-            groupedData[stock.ticker] = [];
-        }
-        groupedData[stock.ticker].push(stock);
-    });
-
-    // För varje ticker, visa var 12:e datapunkt
-    Object.keys(groupedData).forEach(ticker => {
-        const tickerData = groupedData[ticker];
-        
-        // Gå igenom varje 12:e datapunkt
-        for (let i = 11; i < tickerData.length; i += 12) {
-            const stock = tickerData[i];
-
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${stock.ticker}</td>
-                <td>${stock.open_price}</td>
-                <td>${stock.high_price}</td>
-                <td>${stock.low_price}</td>
-                <td>${stock.close_price}</td>
-                <td>${stock.volume}</td>
-                <td>${stock.latest_date}</td>
-            `;
-            stockTableBody.appendChild(row);
-        }
-    });
-}
-*/
 
 fetchStockPrices();
+quarterlyEarningsAAPL();
 
 
 
