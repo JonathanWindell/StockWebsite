@@ -21,6 +21,7 @@ async function fetchStockPrices() {
             console.log('Fetched data:', annualEarningsData);
             if (annualEarningsData && annualEarningsData.length > 0) {
                 displayEarningsData(annualEarningsData);
+                showEarningsData(annualEarningsData);
             } else {
                 console.error('No annual earnings data found.');
             }
