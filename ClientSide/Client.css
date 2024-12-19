@@ -53,9 +53,9 @@ h1 {
     border-spacing: 20px; 
     border-collapse: separate; 
     top: 80px;
-    left: 20%;
+    left: 46%;
     font-size: large;
-    width: 80%;
+    width: 54%;
     border-collapse: collapse;
     background-color: aliceblue;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
@@ -77,13 +77,15 @@ h1 {
 
 /*Stock menu*/
 #StockMenu {
-    padding-left: 20px;
+    right: 0; 
     position: absolute;
-    top: 265px;
+    display: flex;
+    top: 200px;
+    gap: 5px; 
 }
 
 .stockChoices button {
-    display: block; 
+    display: inline-block; 
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -92,7 +94,8 @@ h1 {
     cursor: pointer;
     border-radius: 10px;
     width: 150px; 
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
+    margin-right: 20px;
 }
 
 .stockChoices button:hover {
@@ -105,9 +108,9 @@ h1 {
     border-spacing: 20px; 
     border-collapse: separate; 
     top: 80px;
-    left: 50%;
+    left: 65%;
     font-size: large;
-    width: 50%; 
+    width: 35%; 
     border-collapse: collapse;
     background-color: aliceblue;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
@@ -128,13 +131,15 @@ h1 {
 }
 
 #EarningsMenu {
-    padding-left: 20px;
+    right: 0; 
     position: absolute;
-    top: 265px;
+    display: flex;
+    top: 200px;
+    gap: 5px;;
 }
 
 .annualEarningsChoices button {
-    display: block; 
+    display: inline-block; 
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -143,7 +148,8 @@ h1 {
     cursor: pointer;
     border-radius: 10px;
     width: 150px; 
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
+    margin-right: 20px; 
 }
 
 .annualEarningsChoices button:hover {
