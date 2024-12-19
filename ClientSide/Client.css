@@ -156,6 +156,30 @@ h1 {
     background-color: white;
 }
 
+#quarterlyEarningsAAPLTable {
+    position: relative; 
+    top: 80px;
+    left: 55%;
+    font-size: large;
+    width: 35%; 
+    border-collapse: collapse;
+    background-color: aliceblue;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+#quarterlyEarningsAAPLTable th, #quarterlyEarningsAAPLTable td {
+    padding: 20px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    color: black;
+}
+
+#quarterlyEarningsAAPLTable tr {
+    border-bottom: 1px solid black;
+}
 
 
 

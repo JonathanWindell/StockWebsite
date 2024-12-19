@@ -70,12 +70,12 @@ function displayEarningsData(annualEarningsData) {
     const earningsTableBody = document.getElementById('earningsTableBody');
     earningsTableBody.innerHTML = '';
 
-    annualEarningsData.forEach(earnings => {  
+    annualEarningsData.forEach(annualEarnings => {  
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${earnings.ticker}</td>
-            <td>${earnings.fiscal_date_ending}</td>
-            <td>${earnings.reported_eps}</td>
+            <td>${annualEarnings.ticker}</td>
+            <td>${annualEarnings.fiscal_date_ending}</td>
+            <td>${annualEarnings.reported_eps}</td>
         `;
         earningsTableBody.appendChild(row);
     });
@@ -85,16 +85,16 @@ function displayQuarterlyEarningsAAPL(quarterlyEarningsAAPL) {
     const quarterlyEarningsAAPLTableBody = document.getElementById('quarterlyEarningsAAPLTableBody');
     quarterlyEarningsAAPLTableBody.innerHTML = '';
 
-    quarterlyEarningsAAPL.forEach(earnings => {
+    quarterlyEarningsAAPL.forEach(quarterlyEarnings => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${earnings.fiscal_date_ending}</td>
-            <td>${earnings.reported_date}</td>
-            <td>${earnings.reported_eps}</td>
-            <td>${earnings.estimated_eps}</td>
-            <td>${earnings.surprise}</td>
-            <td>${earnings.surprise_percentage}</td>
-            <td>${earnings.report.time}</td>
+            <td>${quarterlyEarnings.fiscal_date_ending}</td>
+            <td>${quarterlyEarnings.reported_date}</td>
+            <td>${quarterlyEarnings.reported_eps}</td>
+            <td>${quarterlyEarnings.estimated_eps}</td>
+            <td>${quarterlyEarnings.surprise}</td>
+            <td>${quarterlyEarnings.surprise_percentage}</td>
+            <td>${quarterlyEarnings.report_time}</td>
         `;
         quarterlyEarningsAAPLTableBody.appendChild(row);
     });
