@@ -240,7 +240,7 @@ function showEarningsData(annualEarningsData) {
     });
 }
 
-
+//Lägg till display funktionerna igen
 fetchStockPrices();
 quarterlyEarningsAAPL();
 
