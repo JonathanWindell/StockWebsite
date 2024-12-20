@@ -80,7 +80,7 @@ async function quarterlyEarningsAAPL() {
         console.error('Could not fetch quarterly earnings:', error);
     }
 }
-/*
+
 async function quarterlyEarningsGOOGL() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-googl');
@@ -110,7 +110,7 @@ async function quarterlyEarningsMSFT() {
         console.error('Could not fetch quarterly earnings:', error);
     } 
 }
-
+/*
 async function quarterlyEarningsNVDA() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-nvda');
@@ -242,9 +242,122 @@ function showEarningsData(annualEarningsData) {
 
 function displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableAAPL');
-    quarterlyEarningsTableBody.innerHTML = ''; // Rensa befintliga rader
+    quarterlyEarningsTableBody.innerHTML = ''; 
 
     quarterlyEarningsAAPL.forEach(earnings => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${earnings.fiscal_date_ending}</td>
+            <td>${earnings.reported_date}</td>
+            <td>${earnings.reported_eps}</td>
+            <td>${earnings.estimated_eps}</td>
+            <td>${earnings.surprise}</td>
+            <td>${earnings.surprise_percentage}</td>
+            <td>${earnings.report_time}</td>
+        `;
+        quarterlyEarningsTableBody.appendChild(row);
+    });
+}
+
+function displayQuarterlyEarningsGOOGL(quarterlyEarningsGOOGL) {
+    const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableGOOGL');
+    quarterlyEarningsTableBody.innerHTML = ''; 
+
+    quarterlyEarningsGOOGL.forEach(earnings => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${earnings.fiscal_date_ending}</td>
+            <td>${earnings.reported_date}</td>
+            <td>${earnings.reported_eps}</td>
+            <td>${earnings.estimated_eps}</td>
+            <td>${earnings.surprise}</td>
+            <td>${earnings.surprise_percentage}</td>
+            <td>${earnings.report_time}</td>
+        `;
+        quarterlyEarningsTableBody.appendChild(row);
+    });
+}
+function displayQuarterlyEarningsMSFT(quarterlyEarningsMSFT) {
+    const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableMSFT');
+    quarterlyEarningsTableBody.innerHTML = '';
+
+    quarterlyEarningsMSFT.forEach(earnings => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${earnings.fiscal_date_ending}</td>
+            <td>${earnings.reported_date}</td>
+            <td>${earnings.reported_eps}</td>
+            <td>${earnings.estimated_eps}</td>
+            <td>${earnings.surprise}</td>
+            <td>${earnings.surprise_percentage}</td>
+            <td>${earnings.report_time}</td>
+        `;
+        quarterlyEarningsTableBody.appendChild(row);
+    });
+}
+
+function displayQuarterlyEarningsTSLA(quarterlyEarningsTSLA) {
+    const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableTSLA');
+    quarterlyEarningsTableBody.innerHTML = '';
+
+    quarterlyEarningsTSLA.forEach(earnings => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${earnings.fiscal_date_ending}</td>
+            <td>${earnings.reported_date}</td>
+            <td>${earnings.reported_eps}</td>
+            <td>${earnings.estimated_eps}</td>
+            <td>${earnings.surprise}</td>
+            <td>${earnings.surprise_percentage}</td>
+            <td>${earnings.report_time}</td>
+        `;
+        quarterlyEarningsTableBody.appendChild(row);
+    });
+}
+
+function displayQuarterlyEarningsAMZN(quarterlyEarningsAMZN) {
+    const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableAMZN');
+    quarterlyEarningsTableBody.innerHTML = '';
+
+    quarterlyEarningsAMZN.forEach(earnings => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${earnings.fiscal_date_ending}</td>
+            <td>${earnings.reported_date}</td>
+            <td>${earnings.reported_eps}</td>
+            <td>${earnings.estimated_eps}</td>
+            <td>${earnings.surprise}</td>
+            <td>${earnings.surprise_percentage}</td>
+            <td>${earnings.report_time}</td>
+        `;
+        quarterlyEarningsTableBody.appendChild(row);
+    });
+}
+
+function displayQuarterlyEarningsNVDA(quarterlyEarningsNVDA) {
+    const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableNVDA');
+    quarterlyEarningsTableBody.innerHTML = '';
+
+    quarterlyEarningsNVDA.forEach(earnings => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${earnings.fiscal_date_ending}</td>
+            <td>${earnings.reported_date}</td>
+            <td>${earnings.reported_eps}</td>
+            <td>${earnings.estimated_eps}</td>
+            <td>${earnings.surprise}</td>
+            <td>${earnings.surprise_percentage}</td>
+            <td>${earnings.report_time}</td>
+        `;
+        quarterlyEarningsTableBody.appendChild(row);
+    });
+}
+
+function displayQuarterlyEarningsIBM(quarterlyEarningsIBM) {
+    const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableIBM');
+    quarterlyEarningsTableBody.innerHTML = '';
+
+    quarterlyEarningsIBM.forEach(earnings => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${earnings.fiscal_date_ending}</td>
@@ -272,6 +385,12 @@ function displayNoDataMessage() {
 //Lägg till display funktionerna igen
 fetchStockPrices();
 quarterlyEarningsAAPL();
+quarterlyEarningsGOOGL();
+quarterlyEarningsMSFT();
+quarterlyEarningsTSLA();
+quarterlyEarningsAMZN();
+quarterlyEarningsNVDA();
+quarterlyEarningsIBM();
 
 
 
