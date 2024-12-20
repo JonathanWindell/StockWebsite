@@ -260,7 +260,7 @@ function displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL) {
 }
 
 function displayNoDataMessage() {
-    const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableAAPL');
+    const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTable');
     quarterlyEarningsTableBody.innerHTML = `
         <tr>
             <td colspan="7">Ingen data hittades för AAPL</td>

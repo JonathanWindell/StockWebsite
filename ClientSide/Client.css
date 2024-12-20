@@ -39,6 +39,7 @@ h1 {
 .QuarterlyEarningsText, .AnnualEarningsText, .StockPricesText, .UserText, .HomepageText {
     color: white;
     position: absolute;
+    font-size: large;
 }
 
 .HomepageText { left: 40px; top: 55px; }
@@ -252,7 +253,7 @@ h1 {
 }
 
 /*Quarterlyearnings table body*/
-#quarterlyEarningsAAPLTable {
+#quarterlyEarningsTable {
     position: relative;
     border-spacing: 20px; 
     border-collapse: separate; 
@@ -267,7 +268,7 @@ h1 {
     overflow-x: auto;
 }
 
-#quarterlyEarningsAAPLTable th, #quarterlyEarningsAAPLTable td {
+#quarterlyEarningsTable th, #quarterlyEarningsTable td {
     padding: 20px; 
     padding-top: 12px;
     padding-bottom: 12px;
@@ -275,11 +276,11 @@ h1 {
     color: white;
 }
 
-#quarterlyEarningsAAPLTable tr {
+#quarterlyEarningsTable tr {
     border-bottom: 1px solid black;
 }
 
-#quarterlyEarningsAAPLTable tr:hover {
+#quarterlyEarningsTable tr:hover {
     background-color: #28282b; 
 }
 
