@@ -28,25 +28,52 @@ h1 {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Navigation Bar Buttons */
 #homepage, #stockprices, #annualearnings, #quarterlyearnings {
     position: absolute;
-    top: 20px;
-    height: 50px;
-    width: 50px;
+    top: 18px;
+    height: auto;
+    width: 45px;
 }
+
+.QuarterlyEarningsText, .AnnualEarningsText, .StockPricesText, .UserText, .HomepageText {
+    color: white;
+    position: absolute;
+}
+
+.HomepageText { left: 40px; top: 55px; }
+.QuarterlyEarningsText { left: 410px; top: 55px; }
+.AnnualEarningsText { left: 270px; top: 55px; }
+.StockPricesText { left: 145px; top: 55px; }
+.UserText { right: 50px; top: 55px; }
 
 #homepage { left: 50px; }
 #stockprices { left: 170px; }
 #annualearnings { left: 300px; }
 #quarterlyearnings { left: 450px; }
+#user { right: 50px; }
 
 #user {
     position: absolute;
-    top: 16px;
-    right: 50px;
+    top: 12px;
     height: auto;
     width: 65px;
 }
+
+#homepage, #stockprices, #annualearnings, #quarterlyearnings, #user {
+    transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+#homepage:hover, 
+#stockprices:hover, 
+#annualearnings:hover, 
+#quarterlyearnings:hover, 
+#user:hover {
+    cursor: pointer;
+    transform: scale(1.2); 
+}
+
+
 
 /*Stock table body*/
 #stockTable {
@@ -86,7 +113,7 @@ h1 {
     left: 20px;
     position: absolute;
     display: flex;
-    top: 200px;
+    top: 255px;
     gap: 10px; 
 }
 
@@ -122,13 +149,13 @@ h1 {
 }
 
 #btn-stock-MSFT img {
-    width: 20px;
+    width: 25px;
     height: auto;
     object-fit: contain;
 }
 
 #btn-stock-TSLA img {
-    width: 20px;
+    width: 25px;
     height: auto;
     object-fit: contain;
 }
@@ -141,6 +168,12 @@ h1 {
 
 #btn-stock-NVDA img {
     width: 20px;
+    height: auto;
+    object-fit: contain;
+}
+
+#btn-stock-IBM img {
+    width: 30px;
     height: auto;
     object-fit: contain;
 }
@@ -159,9 +192,9 @@ h1 {
     border-spacing: 20px; 
     border-collapse: separate; 
     top: 80px;
-    left: 65%;
+    left: 20%;
     font-size: large;
-    width: 35%; 
+    width: 70%; 
     border-collapse: collapse;
     background-color: #454545;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
@@ -185,19 +218,17 @@ h1 {
     background-color: #28282b; 
 }
 
-#EarningsMenu {
-    right: 0; 
+#AnnualEarningsMenu {
+    left: 20px;
     position: absolute;
     display: flex;
-    top: 200px;
-    gap: 5px;;
+    top: 255px;
+    gap: 10px;
 }
 
 .annualEarningsChoices button {
-    display: inline-block;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
+    display: flex;
+    padding: 15px;
     font-size: 16px;
     font-weight: bold;
     background-color: transparent;
@@ -205,7 +236,7 @@ h1 {
     color: white; 
     cursor: pointer;
     border-radius: 10px;
-    width: 150px;
+    width: 125px;
     height: 50px;
     margin-bottom: 10px;
     margin-right: 20px;
@@ -226,9 +257,9 @@ h1 {
     border-spacing: 20px; 
     border-collapse: separate; 
     top: 80px;
-    left: 46%;
+    left: 20%;
     font-size: large;
-    width: 54%;
+    width: 80%;
     border-collapse: collapse;
     background-color: #454545;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);

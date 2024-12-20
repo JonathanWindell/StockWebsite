@@ -65,7 +65,7 @@ function displayEarningsData(annualEarningsData) {
         earningsTableBody.appendChild(row);
     });
 }
-
+/*
 async function quarterlyEarningsAAPL() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-aapl');
@@ -170,7 +170,7 @@ async function quarterlyEarningsAMZN() {
         console.error('Could not fetch quarterly earnings:', error);
     }
 }
-
+*/
 
 function showStockData(stockPrices) {
     const buttons = document.querySelectorAll("#StockMenu button");
@@ -209,7 +209,7 @@ function showStockData(stockPrices) {
 }
 
 function showEarningsData(annualEarningsData) {
-    const buttons = document.querySelectorAll("#EarningsMenu button");
+    const buttons = document.querySelectorAll("#AnnualEarningsMenu button");
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
