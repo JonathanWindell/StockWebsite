@@ -239,7 +239,7 @@ def get_quarterly_earnings_orcl():
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time FROM public.quarterly_earnings_orcl"
+        "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time FROM public.quarterly_earnings_nvda"
     )
     data = cursor.fetchall()
     conn.close()

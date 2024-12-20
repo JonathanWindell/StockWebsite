@@ -110,7 +110,7 @@ async function quarterlyEarningsMSFT() {
         console.error('Could not fetch quarterly earnings:', error);
     } 
 }
-/*
+
 async function quarterlyEarningsNVDA() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-nvda');
@@ -170,7 +170,7 @@ async function quarterlyEarningsAMZN() {
         console.error('Could not fetch quarterly earnings:', error);
     }
 }
-*/
+
 
 function showStockData(stockPrices) {
     const buttons = document.querySelectorAll("#StockMenu button");
