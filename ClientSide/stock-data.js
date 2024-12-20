@@ -65,14 +65,14 @@ function displayEarningsData(annualEarningsData) {
         earningsTableBody.appendChild(row);
     });
 }
-/*
+
 async function quarterlyEarningsAAPL() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-aapl');
         const quarterlyEarningsAAPL = await response.json();
         console.log('Fetched data:', quarterlyEarningsAAPL);
         if (quarterlyEarningsAAPL && quarterlyEarningsAAPL.length > 0) {
-            displayQuarterlyEarningsAAPL(quarterlyEarningsAAPL);
+            displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL);
         } else {
             console.error('No quarterly earnings data found.');
         }
@@ -80,7 +80,7 @@ async function quarterlyEarningsAAPL() {
         console.error('Could not fetch quarterly earnings:', error);
     }
 }
-
+/*
 async function quarterlyEarningsGOOGL() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-googl');
@@ -239,6 +239,35 @@ function showEarningsData(annualEarningsData) {
         });
     });
 }
+
+function displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL) {
+    const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableAAPL');
+    quarterlyEarningsTableBody.innerHTML = ''; // Rensa befintliga rader
+
+    quarterlyEarningsAAPL.forEach(earnings => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${earnings.fiscal_date_ending}</td>
+            <td>${earnings.reported_date}</td>
+            <td>${earnings.reported_eps}</td>
+            <td>${earnings.estimated_eps}</td>
+            <td>${earnings.surprise}</td>
+            <td>${earnings.surprise_percentage}</td>
+            <td>${earnings.report_time}</td>
+        `;
+        quarterlyEarningsTableBody.appendChild(row);
+    });
+}
+
+function displayNoDataMessage() {
+    const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableAAPL');
+    quarterlyEarningsTableBody.innerHTML = `
+        <tr>
+            <td colspan="7">Ingen data hittades för AAPL</td>
+        </tr>
+    `;
+}
+
 
 //Lägg till display funktionerna igen
 fetchStockPrices();
