@@ -171,6 +171,21 @@ async function quarterlyEarningsAMZN() {
     }
 }
 
+async function companyOverview() {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/company-overview');
+        const companyOverview = await response.json();
+        console.log('Fetched data:', companyOverview);
+        if (companyOverview && companyOverview.length > 0) {
+            displayCompanyOverview(companyOverview);
+        } else {
+            console.error('No company overview data found.');
+        }
+    } catch (error) {
+        console.error('Could not fetch company overview:', error);
+    }
+}
+
 
 function showStockData(stockPrices) {
     const buttons = document.querySelectorAll("#StockMenu button");
