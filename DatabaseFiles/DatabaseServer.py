@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import psycopg2
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -284,6 +285,89 @@ def get_quarterly_earnings_tsla():
     ]
 
     return jsonify(quarterly_earnings_tsla)
+
+@app.route('/company-overview', methods=['GET'])
+def get_company_overview():
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        SELECT symbol, asset_type, name, description, cik, exchange, currency, country, sector, industry,
+               adress, official_site, fiscal_year_end, latest_quarter, market_capitalization, ebitda, 
+               pe_ratio, peg_ratio, book_value, dividend_per_share, dividend_yield, eps, revenue_per_share_ttm, 
+               profit_margin, operating_margin_ttm, return_on_assets_ttm, return_on_equity_ttm, revenue_ttm, 
+               gross_profit_ttm, diluted_eps_ttm, quarterly_earnings_growth_yoy, quarterly_revenue_growth_yoy,
+               analyst_target_price, analyst_rating_strong_buy, analyst_rating_buy, analyst_rating_hold, 
+               analyst_rating_sell, analyst_rating_strong_sell, trailing_pe, forward_pe, price_to_sales_ratio_ttm, 
+               price_to_book_ratio, ev_to_revenue, ev_to_ebitda, beta, week_52_high, week_52_low, 
+               moving_average_50_day, moving_average_200_day, shares_outstanding, dividend_date, ex_dividend_date
+        FROM company_overview
+        """
+    )
+    data = cursor.fetchall()
+    conn.close()
+
+    company_overview = [
+        {
+            "symbol": str(row[0]),
+            "asset_type": str(row[1]),
+            "name": str(row[2]),
+            "description": str(row[3]),
+            "cik": str(row[4]),
+            "exchange": str(row[5]),
+            "currency": str(row[6]),
+            "country": str(row[7]),
+            "sector": str(row[8]),
+            "industry": str(row[9]),
+            "adress": str(row[10]),
+            "official_site": str(row[11]),
+            "fiscal_year_end": str(row[12]),
+            "latest_quarter": row[13].strftime("%Y-%m-%d") if row[13] else None,  
+            "market_capitalization": float(row[14]) if row[14] is not None else None,
+            "ebitda": float(row[15]) if row[15] is not None else None,
+            "pe_ratio": float(row[16]) if row[16] is not None else None,
+            "peg_ratio": float(row[17]) if row[17] is not None else None,
+            "book_value": float(row[18]) if row[18] is not None else None,
+            "dividend_per_share": float(row[19]) if row[19] is not None else None,
+            "dividend_yield": float(row[20]) if row[20] is not None else None,
+            "eps": float(row[21]) if row[21] is not None else None,
+            "revenue_per_share_ttm": float(row[22]) if row[22] is not None else None,
+            "profit_margin": float(row[23]) if row[23] is not None else None,
+            "operating_margin_ttm": float(row[24]) if row[24] is not None else None,
+            "return_on_assets_ttm": float(row[25]) if row[25] is not None else None,
+            "return_on_equity_ttm": float(row[26]) if row[26] is not None else None,
+            "revenue_ttm": float(row[27]) if row[27] is not None else None,
+            "gross_profit_ttm": float(row[28]) if row[28] is not None else None,
+            "diluted_eps_ttm": float(row[29]) if row[29] is not None else None,
+            "quarterly_earnings_growth_yoy": float(row[30]) if row[30] is not None else None,
+            "quarterly_revenue_growth_yoy": float(row[31]) if row[31] is not None else None,
+            "analyst_target_price": float(row[32]) if row[32] is not None else None,
+            "analyst_rating_strong_buy": str(row[33]),
+            "analyst_rating_buy": str(row[34]),
+            "analyst_rating_hold": str(row[35]),
+            "analyst_rating_sell": str(row[36]),
+            "analyst_rating_strong_sell": str(row[37]),
+            "trailing_pe": float(row[38]) if row[38] is not None else None,
+            "forward_pe": float(row[39]) if row[39] is not None else None,
+            "price_to_sales_ratio_ttm": float(row[40]) if row[40] is not None else None,
+            "price_to_book_ratio": float(row[41]) if row[41] is not None else None,
+            "ev_to_revenue": float(row[42]) if row[42] is not None else None,
+            "ev_to_ebitda": float(row[43]) if row[43] is not None else None,
+            "beta": float(row[44]) if row[44] is not None else None,
+            "week_52_high": float(row[45]) if row[45] is not None else None,
+            "week_52_low": float(row[46]) if row[46] is not None else None,
+            "moving_average_50_day": float(row[47]) if row[47] is not None else None,
+            "moving_average_200_day": float(row[48]) if row[48] is not None else None,
+            "shares_outstanding": float(row[49]) if row[49] is not None else None,
+            "dividend_date": str(row[50]) if row[50] else None,
+            "ex_dividend_date": str(row[51]) if row[51] else None
+        }
+        for row in data
+    ]
+
+    return jsonify(company_overview)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
