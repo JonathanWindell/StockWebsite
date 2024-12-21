@@ -244,7 +244,7 @@ def get_quarterly_earnings_orcl():
     data = cursor.fetchall()
     conn.close()
 
-    quarterly_earnings_orcl = [
+    quarterly_earnings_nvda = [
         {
             "fiscal_date_ending": str(row[0]),
             "reported_date": str(row[1]),
@@ -257,7 +257,7 @@ def get_quarterly_earnings_orcl():
         for row in data
     ]
 
-    return jsonify(quarterly_earnings_orcl)
+    return jsonify(quarterly_earnings_nvda)
 
 @app.route('/quarterly-earnings-tsla', methods=['GET'])
 def get_quarterly_earnings_tsla():
