@@ -179,7 +179,6 @@ async function companyOverview() {
     try {
         const response = await fetch('http://127.0.0.1:5000/company-overview');
         
-        // Add error handling for non-200 responses
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -188,18 +187,20 @@ async function companyOverview() {
         console.log('Fetched data:', companyOverview);
         
         if (companyOverview && companyOverview.length > 0) {
+            // Sätt upp event listeners för meny-knapparna
+            setupMenuListeners(companyOverview);
+            
+            // Om du vill visa någon initial data kan du behålla detta
             displayCompanyOverview(companyOverview);
         } else {
             console.error('No company overview data found.');
-            // Display error message to user
             document.getElementById('company-overview-basic').innerHTML = 
                 '<p>No information found.</p>';
         }
     } catch (error) {
         console.error('Could not fetch company overview:', error);
-        // Display error message to user
         document.getElementById('company-overview-basic').innerHTML = 
-            `<p>Just som small technical issues. Hold on!: ${error.message}</p>`;
+            `<p>Just some small technical issues. Hold on!: ${error.message}</p>`;
     }
 }
 
@@ -476,6 +477,87 @@ function displayCompanyOverview(companyOverview) {
     basicSection.innerHTML = basicContent || '<p>No information found</p>';
     analystSection.innerHTML = analystContent || '<p>No information found</p>';
     advancedSection.innerHTML = advancedContent || '<p>No information found</p>';
+}
+
+function setupMenuListeners(companyOverview) {
+    const buttons = document.querySelectorAll("#AnnualEarningsMenu button");
+    
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const ticker = button.dataset.ticker;
+            console.log('Selected ticker:', ticker);
+            showCompanyOverview(companyOverview, ticker);
+        });
+    });
+}
+
+function showCompanyOverview(companyOverview, ticker) {
+    const filteredCompany = companyOverview.filter(company => company.symbol === ticker);
+    console.log('Filtered data:', filteredCompany);
+
+    const basicSection = document.getElementById('company-overview-basic');
+    const analystSection = document.getElementById('company-overview-analyst');
+    const advancedSection = document.getElementById('company-overview-advanced');
+
+    if (filteredCompany.length > 0) {
+        const company = filteredCompany[0];
+
+        // Basic content
+        basicSection.innerHTML = `
+            <dl class="overview-list">
+                <dt>Name</dt><dd>${company.name || 'N/A'}</dd>
+                <dt>Asset Type</dt><dd>${company.asset_type || 'N/A'}</dd>
+                <dt>Description</dt><dd>${company.description || 'N/A'}</dd>
+                <dt>Exchange</dt><dd>${company.exchange || 'N/A'}</dd>
+                <dt>Country</dt><dd>${company.country || 'N/A'}</dd>
+                <dt>Sector</dt><dd>${company.sector || 'N/A'}</dd>
+                <dt>Fiscal Year End</dt><dd>${company.fiscal_year_end || 'N/A'}</dd>
+                <dt>Latest Quarter</dt><dd>${company.latest_quarter || 'N/A'}</dd>
+                <dt>Market Capitalization</dt><dd>${company.market_capitalization || 'N/A'}</dd>
+                <dt>Dividend Date</dt><dd>${company.dividend_date || 'N/A'}</dd>
+                <dt>Dividend Per Share</dt><dd>${company.dividend_per_share || 'N/A'}</dd>
+                <dt>Dividend Yield</dt><dd>${company.dividend_yield || 'N/A'}</dd>
+                <dt>Ebitda</dt><dd>${company.ebitda || 'N/A'}</dd>
+            </dl>
+        `;
+
+        // Analyst content
+        analystSection.innerHTML = `
+            <dl class="overview-list">
+                <dt>Analyst Rating Strong Buy</dt><dd>${company.analyst_rating_strong_buy || 'N/A'}</dd>
+                <dt>Analyst Rating Buy</dt><dd>${company.analyst_rating_buy || 'N/A'}</dd>
+                <dt>Analyst Rating Hold</dt><dd>${company.analyst_rating_hold || 'N/A'}</dd>
+                <dt>Analyst Rating Sell</dt><dd>${company.analyst_rating_sell || 'N/A'}</dd>
+                <dt>Moving Average 50 Day</dt><dd>${company.moving_average_50_day || 'N/A'}</dd>
+                <dt>Week 52 High</dt><dd>${company.week_52_high || 'N/A'}</dd>
+                <dt>Week 52 Low</dt><dd>${company.week_52_low || 'N/A'}</dd>
+            </dl>
+        `;
+
+        // Advanced content
+        advancedSection.innerHTML = `
+            <dl class="overview-list">
+                <dt>Shares Outstanding</dt><dd>${company.shares_outstanding || 'N/A'}</dd>
+                <dt>Quarterly Earnings Growth YOY</dt><dd>${company.quarterly_earnings_growth_yoy || 'N/A'}</dd>
+                <dt>Quarterly Revenue Growth YOY</dt><dd>${company.quarterly_revenue_growth_yoy || 'N/A'}</dd>
+                <dt>Return on Assets TTM</dt><dd>${company.return_on_assets_ttm || 'N/A'}</dd>
+                <dt>Return on Equity TTM</dt><dd>${company.return_on_equity_ttm || 'N/A'}</dd>
+                <dt>Revenue TTM</dt><dd>${company.revenue_ttm || 'N/A'}</dd>
+                <dt>Profit Margin</dt><dd>${company.profit_margin || 'N/A'}</dd>
+                <dt>Book Value</dt><dd>${company.book_value || 'N/A'}</dd>
+                <dt>Trailing PE</dt><dd>${company.trailing_pe || 'N/A'}</dd>
+                <dt>Forward PE</dt><dd>${company.forward_pe || 'N/A'}</dd>
+                <dt>PE Ratio</dt><dd>${company.pe_ratio || 'N/A'}</dd>
+                <dt>PEG Ratio</dt><dd>${company.peg_ratio || 'N/A'}</dd>
+                <dt>Diluted EPS TTM</dt><dd>${company.diluted_eps_ttm || 'N/A'}</dd>
+            </dl>
+        `;
+    } else {
+        const noDataMessage = `<p>No data available for ${ticker}</p>`;
+        basicSection.innerHTML = noDataMessage;
+        analystSection.innerHTML = noDataMessage;
+        advancedSection.innerHTML = noDataMessage;
+    }
 }
 
 function displayNoDataMessage() {

@@ -284,5 +284,26 @@ h1 {
     background-color: #28282b; 
 }
 
+/*Company overview*/
+#company-overview-basic, #company-overview-analyst, #company-overview-advanced {
+    color: white;
+}
 
+#company-overview-basic {
+    position: absolute;
+    left: 200px;
+    top: 200px;
+}
+
+#company-overview-analyst {
+    position: absolute;
+    left: 200px;
+    top: 800px;
+}
+
+#company-overview-advanced {
+    position: absolute;
+    right: 100px;
+    top: 800px;
+}
 
