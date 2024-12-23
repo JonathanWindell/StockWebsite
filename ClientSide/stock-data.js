@@ -387,7 +387,76 @@ function displayQuarterlyEarningsIBM(quarterlyEarningsIBM) {
     });
 }
 
+function displayCompanyOverview(companyOverview) {
+    const basicSection = document.getElementById('company-overview-basic');
+    const analystSection = document.getElementById('company-overview-analyst');
+    const advancedSection = document.getElementById('company-overview-advanced');
+
+    let basicContent = '';
+    let analystContent = '';
+    let advancedContent = '';
+
+    companyOverview.forEach(overview => {
+        // Append to the basicSection content
+        basicContent += `
+            <dl>
+                <dt>Name</dt><dd>${overview.name}</dd>
+                <dt>Asset Type</dt><dd>${overview.asset_type}</dd>
+                <dt>Description</dt><dd>${overview.description}</dd>
+                <dt>Exchange</dt><dd>${overview.exchange}</dd>
+                <dt>Country</dt><dd>${overview.country}</dd>
+                <dt>Sector</dt><dd>${overview.sector}</dd>
+                <dt>Fiscal Year End</dt><dd>${overview.fiscal_year_end}</dd>
+                <dt>Latest Quarter</dt><dd>${overview.latest_quarter}</dd>
+                <dt>Market Capitalization</dt><dd>${overview.market_capitalization}</dd>
+                <dt>Dividend Date</dt><dd>${overview.dividend_date}</dd>
+                <dt>Dividend Per Share</dt><dd>${overview.dividend_per_share}</dd>
+                <dt>Dividend Yield</dt><dd>${overview.dividend_yield}</dd>
+                <dt>Ebitda</dt><dd>${overview.ebitda}</dd>
+            </dl>
+        `;
+
+        // Append to the analystSection content
+        analystContent += `
+            <dl>
+                <dt>Analyst Rating Strong Buy</dt><dd>${overview.analyst_rating_strong_buy}</dd>
+                <dt>Analyst Rating Buy</dt><dd>${overview.analyst_rating_buy}</dd>
+                <dt>Analyst Rating Hold</dt><dd>${overview.analyst_rating_hold}</dd>
+                <dt>Analyst Rating Sell</dt><dd>${overview.analyst_rating_sell}</dd>
+                <dt>Moving Average 50 Day</dt><dd>${overview.moving_average_50_day}</dd>
+                <dt>Week 52 High</dt><dd>${overview.week_52_high}</dd>
+                <dt>Week 52 Low</dt><dd>${overview.week_52_low}</dd>
+            </dl>
+        `;
+
+        // Append to the advancedSection content
+        advancedContent += `
+            <dl>
+                <dt>Shares Outstanding</dt><dd>${overview.shares_outstanding}</dd>
+                <dt>Quarterly Earnings Growth YOY</dt><dd>${overview.quarterly_earnings_growth_yoy}</dd>
+                <dt>Quarterly Revenue Growth YOY</dt><dd>${overview.quarterly_revenue_growth_yoy}</dd>
+                <dt>Return on Assets TTM</dt><dd>${overview.return_on_assets_ttm}</dd>
+                <dt>Return on Equity TTM</dt><dd>${overview.return_on_equity_ttm}</dd>
+                <dt>Revenue TTM</dt><dd>${overview.revenue_ttm}</dd>
+                <dt>Profit Margin</dt><dd>${overview.profit_margin}</dd>
+                <dt>Book Value</dt><dd>${overview.book_value}</dd>
+                <dt>Trailing PE</dt><dd>${overview.trailing_pe}</dd>
+                <dt>Forward PE</dt><dd>${overview.forward_pe}</dd>
+                <dt>PE Ratio</dt><dd>${overview.pe_ratio}</dd>
+                <dt>PEG Ratio</dt><dd>${overview.peg_ratio}</dd>
+                <dt>Diluted EPS TTM</dt><dd>${overview.diluted_eps_ttm}</dd>
+            </dl>
+        `;
+    });
+
+    // Update the innerHTML of each section with the accumulated content
+    basicSection.innerHTML = basicContent;
+    analystSection.innerHTML = analystContent;
+    advancedSection.innerHTML = advancedContent;
+}
+
 function displayNoDataMessage() {
+
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTable');
     quarterlyEarningsTableBody.innerHTML = `
         <tr>
@@ -406,6 +475,7 @@ quarterlyEarningsTSLA();
 quarterlyEarningsAMZN();
 quarterlyEarningsNVDA();
 quarterlyEarningsIBM();
+displayCompanyOverview();
 
 
 

@@ -235,7 +235,7 @@ def get_quarterly_earnings_ibm():
     return jsonify(quarterly_earnings_ibm)
 
 @app.route('/quarterly-earnings-nvda', methods=['GET'])
-def get_quarterly_earnings_orcl():
+def get_quarterly_earnings_nvda():
     conn = connect_to_db()
     cursor = conn.cursor()
 
