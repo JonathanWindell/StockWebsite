@@ -23,10 +23,11 @@ h1 {
     top: 0;
     left: 0;
     background-color: #454545;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 100%;
     height: 100px;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    border: 2px solid #f0a500; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 /* Navigation Bar Buttons */
@@ -43,9 +44,9 @@ h1 {
     font-size: large;
 }
 
-.HomepageText { left: 40px; top: 55px; }
+.HomepageText { left: 35px; top: 55px; }
 .QuarterlyEarningsText { left: 410px; top: 55px; }
-.AnnualEarningsText { left: 270px; top: 55px; }
+.AnnualEarningsText { left: 265px; top: 55px; }
 .StockPricesText { left: 145px; top: 55px; }
 .UserText { right: 50px; top: 55px; }
 
@@ -88,8 +89,8 @@ h1 {
     width: 80%;
     border-collapse: collapse;
     background-color: #454545;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
-    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); 
+    border: 1px solid #f0a500;
     border-radius: 5px;
     overflow-x: auto;
 }
@@ -125,7 +126,7 @@ h1 {
     font-size: 16px;
     font-weight: bold;
     background-color: transparent;
-    border: 2px solid #ccc; 
+    border: 2px solid #f0a500; 
     color: white; 
     cursor: pointer;
     border-radius: 10px;
@@ -135,7 +136,8 @@ h1 {
     margin-right: 20px;
     text-align: center;
     gap: 10px;
-    transition: background-color 0.3s, color 0.3s; 
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); 
 }
 
 #btn-stock-AAPL img {
@@ -198,7 +200,8 @@ h1 {
     width: 70%; 
     border-collapse: collapse;
     background-color: #454545;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    border: 2px solid #f0a500; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     overflow-x: auto;
 }
@@ -233,7 +236,7 @@ h1 {
     font-size: 16px;
     font-weight: bold;
     background-color: transparent;
-    border: 2px solid #ccc; 
+    border: 2px solid #f0a500; 
     color: white; 
     cursor: pointer;
     border-radius: 10px;
@@ -243,7 +246,8 @@ h1 {
     margin-right: 20px;
     text-align: center;
     gap: 10px;
-    transition: background-color 0.3s, color 0.3s; 
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);  
 }
 
 .annualEarningsChoices button:hover {
@@ -263,8 +267,9 @@ h1 {
     width: 80%;
     border-collapse: collapse;
     background-color: #454545;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    border: 2px solid #f0a500; 
     overflow-x: auto;
 }
 
@@ -288,22 +293,22 @@ h1 {
 .companyoverviewbasic {
     position: absolute;
     color: white;
-    top: 175px;
-    left: 250px;
+    top: 185px;
+    left: 400px;
 }
 
 .companyoverviewanalyst {
     position: absolute;
     color: white;
-    top: 670px;
-    left: 240px;
+    top: 750px;
+    right: 370px;
 }
 
 .companyoverviewadvanced {
     position: absolute;
     color: white;
-    top: 175px;
-    right: 250px;
+    top: 185px;
+    right: 360px;
 }
 
 
@@ -337,6 +342,17 @@ h1 {
     line-height: 1.5;
 }
 
+#company-overview-basic, 
+#company-overview-analyst, 
+#company-overview-advanced {
+    color: white;
+    background-color: #454545;
+    padding-left: 20px;
+    border-radius: 5px;
+    width: 40%;
+    border: 2px solid #f0a500; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); 
+}
 
 #company-overview-basic {
     position: absolute;
@@ -346,13 +362,13 @@ h1 {
 
 #company-overview-analyst {
     position: absolute;
-    left: 200px;
-    top: 800px;
+    right: 80px;
+    top: 820px;
 }
 
 #company-overview-advanced {
     position: absolute;
-    right: 100px;
+    right: 80px;
     top: 250px;
 }
 
