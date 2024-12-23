@@ -285,12 +285,34 @@ h1 {
 }
 
 /*Company overview*/
+.companyoverviewbasic {
+    position: absolute;
+    color: white;
+    top: 175px;
+    left: 250px;
+}
+
+.companyoverviewanalyst {
+    position: absolute;
+    color: white;
+    top: 670px;
+    left: 240px;
+}
+
+.companyoverviewadvanced {
+    position: absolute;
+    color: white;
+    top: 175px;
+    right: 250px;
+}
+
+
 #company-overview-basic, #company-overview-analyst, #company-overview-advanced {
     color: white;
     background-color:#454545;
     padding-left: 20px;
-    padding-right: 20px;
     border-radius: 5px;
+    width: 40%;
 }
 
 #company-overview-basic dl,
@@ -319,7 +341,7 @@ h1 {
 #company-overview-basic {
     position: absolute;
     left: 200px;
-    top: 200px;
+    top: 250px;
 }
 
 #company-overview-analyst {
@@ -331,6 +353,6 @@ h1 {
 #company-overview-advanced {
     position: absolute;
     right: 100px;
-    top: 800px;
+    top: 250px;
 }
 

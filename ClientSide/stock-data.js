@@ -508,6 +508,8 @@ function showCompanyOverview(companyOverview, ticker) {
                 <dt>Name</dt><dd>${company.name || 'N/A'}</dd>
                 <dt>Asset Type</dt><dd>${company.asset_type || 'N/A'}</dd>
                 <dt>Description</dt><dd>${company.description || 'N/A'}</dd>
+                <dt>Official Site</dt><dd>${company.official_site || 'N/A'}</dd>
+                <dt>Address</dt><dd>${company.adress || 'N/A'}</dd>
                 <dt>Exchange</dt><dd>${company.exchange || 'N/A'}</dd>
                 <dt>Country</dt><dd>${company.country || 'N/A'}</dd>
                 <dt>Sector</dt><dd>${company.sector || 'N/A'}</dd>
@@ -529,6 +531,7 @@ function showCompanyOverview(companyOverview, ticker) {
                 <dt>Analyst Rating Hold</dt><dd>${company.analyst_rating_hold || 'N/A'}</dd>
                 <dt>Analyst Rating Sell</dt><dd>${company.analyst_rating_sell || 'N/A'}</dd>
                 <dt>Moving Average 50 Day</dt><dd>${company.moving_average_50_day || 'N/A'}</dd>
+                <dt>Moving Average 200 Day</dt><dd>${company.moving_average_200_day || 'N/A'}</dd>
                 <dt>Week 52 High</dt><dd>${company.week_52_high || 'N/A'}</dd>
                 <dt>Week 52 Low</dt><dd>${company.week_52_low || 'N/A'}</dd>
             </dl>
@@ -550,6 +553,9 @@ function showCompanyOverview(companyOverview, ticker) {
                 <dt>PE Ratio</dt><dd>${company.pe_ratio || 'N/A'}</dd>
                 <dt>PEG Ratio</dt><dd>${company.peg_ratio || 'N/A'}</dd>
                 <dt>Diluted EPS TTM</dt><dd>${company.diluted_eps_ttm || 'N/A'}</dd>
+                <dt>Gross Profit TTm</dt><dd>${company.gross_profit_ttm || 'N/A'}</dd>
+                <dt>Operating Margin TTM</dt><dd>${company.operating_margin_ttm || 'N/A'}</dd>
+                <dt>Price to Book ratio</dt><dd>${company.price_to_book_ratio || 'N/A'}</dd>
             </dl>
         `;
     } else {
