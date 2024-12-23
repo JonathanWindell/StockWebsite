@@ -171,18 +171,35 @@ async function quarterlyEarningsAMZN() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    companyOverview();
+});
+
 async function companyOverview() {
     try {
         const response = await fetch('http://127.0.0.1:5000/company-overview');
+        
+        // Add error handling for non-200 responses
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const companyOverview = await response.json();
         console.log('Fetched data:', companyOverview);
+        
         if (companyOverview && companyOverview.length > 0) {
             displayCompanyOverview(companyOverview);
         } else {
             console.error('No company overview data found.');
+            // Display error message to user
+            document.getElementById('company-overview-basic').innerHTML = 
+                '<p>No information found.</p>';
         }
     } catch (error) {
         console.error('Could not fetch company overview:', error);
+        // Display error message to user
+        document.getElementById('company-overview-basic').innerHTML = 
+            `<p>Just som small technical issues. Hold on!: ${error.message}</p>`;
     }
 }
 
@@ -388,71 +405,77 @@ function displayQuarterlyEarningsIBM(quarterlyEarningsIBM) {
 }
 
 function displayCompanyOverview(companyOverview) {
-    const basicSection = document.getElementById('company-overview-basic');
-    const analystSection = document.getElementById('company-overview-analyst');
-    const advancedSection = document.getElementById('company-overview-advanced');
+    // Get correct element IDs (matching your HTML)
+    const basicSection = document.querySelector('#CompanyOverviewBasic #company-overview-basic');
+    const analystSection = document.querySelector('#CompanyOverviewAnalyst #company-overview-analyst');
+    const advancedSection = document.querySelector('#CompanyOverviewAdvanced #company-overview-advanced');
+    
+    if (!basicSection || !analystSection || !advancedSection) {
+        console.error('Could not find one or more section elements');
+        return;
+    }
 
     let basicContent = '';
     let analystContent = '';
     let advancedContent = '';
 
     companyOverview.forEach(overview => {
-        // Append to the basicSection content
+        // Basic section content
         basicContent += `
-            <dl>
-                <dt>Name</dt><dd>${overview.name}</dd>
-                <dt>Asset Type</dt><dd>${overview.asset_type}</dd>
-                <dt>Description</dt><dd>${overview.description}</dd>
-                <dt>Exchange</dt><dd>${overview.exchange}</dd>
-                <dt>Country</dt><dd>${overview.country}</dd>
-                <dt>Sector</dt><dd>${overview.sector}</dd>
-                <dt>Fiscal Year End</dt><dd>${overview.fiscal_year_end}</dd>
-                <dt>Latest Quarter</dt><dd>${overview.latest_quarter}</dd>
-                <dt>Market Capitalization</dt><dd>${overview.market_capitalization}</dd>
-                <dt>Dividend Date</dt><dd>${overview.dividend_date}</dd>
-                <dt>Dividend Per Share</dt><dd>${overview.dividend_per_share}</dd>
-                <dt>Dividend Yield</dt><dd>${overview.dividend_yield}</dd>
-                <dt>Ebitda</dt><dd>${overview.ebitda}</dd>
+            <dl class="overview-list">
+                <dt>Name</dt><dd>${overview.name || 'N/A'}</dd>
+                <dt>Asset Type</dt><dd>${overview.asset_type || 'N/A'}</dd>
+                <dt>Description</dt><dd>${overview.description || 'N/A'}</dd>
+                <dt>Exchange</dt><dd>${overview.exchange || 'N/A'}</dd>
+                <dt>Country</dt><dd>${overview.country || 'N/A'}</dd>
+                <dt>Sector</dt><dd>${overview.sector || 'N/A'}</dd>
+                <dt>Fiscal Year End</dt><dd>${overview.fiscal_year_end || 'N/A'}</dd>
+                <dt>Latest Quarter</dt><dd>${overview.latest_quarter || 'N/A'}</dd>
+                <dt>Market Capitalization</dt><dd>${overview.market_capitalization || 'N/A'}</dd>
+                <dt>Dividend Date</dt><dd>${overview.dividend_date || 'N/A'}</dd>
+                <dt>Dividend Per Share</dt><dd>${overview.dividend_per_share || 'N/A'}</dd>
+                <dt>Dividend Yield</dt><dd>${overview.dividend_yield || 'N/A'}</dd>
+                <dt>Ebitda</dt><dd>${overview.ebitda || 'N/A'}</dd>
             </dl>
         `;
 
-        // Append to the analystSection content
+        // Analyst section content
         analystContent += `
-            <dl>
-                <dt>Analyst Rating Strong Buy</dt><dd>${overview.analyst_rating_strong_buy}</dd>
-                <dt>Analyst Rating Buy</dt><dd>${overview.analyst_rating_buy}</dd>
-                <dt>Analyst Rating Hold</dt><dd>${overview.analyst_rating_hold}</dd>
-                <dt>Analyst Rating Sell</dt><dd>${overview.analyst_rating_sell}</dd>
-                <dt>Moving Average 50 Day</dt><dd>${overview.moving_average_50_day}</dd>
-                <dt>Week 52 High</dt><dd>${overview.week_52_high}</dd>
-                <dt>Week 52 Low</dt><dd>${overview.week_52_low}</dd>
+            <dl class="overview-list">
+                <dt>Analyst Rating Strong Buy</dt><dd>${overview.analyst_rating_strong_buy || 'N/A'}</dd>
+                <dt>Analyst Rating Buy</dt><dd>${overview.analyst_rating_buy || 'N/A'}</dd>
+                <dt>Analyst Rating Hold</dt><dd>${overview.analyst_rating_hold || 'N/A'}</dd>
+                <dt>Analyst Rating Sell</dt><dd>${overview.analyst_rating_sell || 'N/A'}</dd>
+                <dt>Moving Average 50 Day</dt><dd>${overview.moving_average_50_day || 'N/A'}</dd>
+                <dt>Week 52 High</dt><dd>${overview.week_52_high || 'N/A'}</dd>
+                <dt>Week 52 Low</dt><dd>${overview.week_52_low || 'N/A'}</dd>
             </dl>
         `;
 
-        // Append to the advancedSection content
+        // Advanced section content
         advancedContent += `
-            <dl>
-                <dt>Shares Outstanding</dt><dd>${overview.shares_outstanding}</dd>
-                <dt>Quarterly Earnings Growth YOY</dt><dd>${overview.quarterly_earnings_growth_yoy}</dd>
-                <dt>Quarterly Revenue Growth YOY</dt><dd>${overview.quarterly_revenue_growth_yoy}</dd>
-                <dt>Return on Assets TTM</dt><dd>${overview.return_on_assets_ttm}</dd>
-                <dt>Return on Equity TTM</dt><dd>${overview.return_on_equity_ttm}</dd>
-                <dt>Revenue TTM</dt><dd>${overview.revenue_ttm}</dd>
-                <dt>Profit Margin</dt><dd>${overview.profit_margin}</dd>
-                <dt>Book Value</dt><dd>${overview.book_value}</dd>
-                <dt>Trailing PE</dt><dd>${overview.trailing_pe}</dd>
-                <dt>Forward PE</dt><dd>${overview.forward_pe}</dd>
-                <dt>PE Ratio</dt><dd>${overview.pe_ratio}</dd>
-                <dt>PEG Ratio</dt><dd>${overview.peg_ratio}</dd>
-                <dt>Diluted EPS TTM</dt><dd>${overview.diluted_eps_ttm}</dd>
+            <dl class="overview-list">
+                <dt>Shares Outstanding</dt><dd>${overview.shares_outstanding || 'N/A'}</dd>
+                <dt>Quarterly Earnings Growth YOY</dt><dd>${overview.quarterly_earnings_growth_yoy || 'N/A'}</dd>
+                <dt>Quarterly Revenue Growth YOY</dt><dd>${overview.quarterly_revenue_growth_yoy || 'N/A'}</dd>
+                <dt>Return on Assets TTM</dt><dd>${overview.return_on_assets_ttm || 'N/A'}</dd>
+                <dt>Return on Equity TTM</dt><dd>${overview.return_on_equity_ttm || 'N/A'}</dd>
+                <dt>Revenue TTM</dt><dd>${overview.revenue_ttm || 'N/A'}</dd>
+                <dt>Profit Margin</dt><dd>${overview.profit_margin || 'N/A'}</dd>
+                <dt>Book Value</dt><dd>${overview.book_value || 'N/A'}</dd>
+                <dt>Trailing PE</dt><dd>${overview.trailing_pe || 'N/A'}</dd>
+                <dt>Forward PE</dt><dd>${overview.forward_pe || 'N/A'}</dd>
+                <dt>PE Ratio</dt><dd>${overview.pe_ratio || 'N/A'}</dd>
+                <dt>PEG Ratio</dt><dd>${overview.peg_ratio || 'N/A'}</dd>
+                <dt>Diluted EPS TTM</dt><dd>${overview.diluted_eps_ttm || 'N/A'}</dd>
             </dl>
         `;
     });
 
-    // Update the innerHTML of each section with the accumulated content
-    basicSection.innerHTML = basicContent;
-    analystSection.innerHTML = analystContent;
-    advancedSection.innerHTML = advancedContent;
+    // Update the innerHTML of each section
+    basicSection.innerHTML = basicContent || '<p>No information found</p>';
+    analystSection.innerHTML = analystContent || '<p>No information found</p>';
+    advancedSection.innerHTML = advancedContent || '<p>No information found</p>';
 }
 
 function displayNoDataMessage() {
