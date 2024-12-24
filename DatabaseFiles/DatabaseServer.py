@@ -368,6 +368,91 @@ def get_company_overview():
 
     return jsonify(company_overview)
 
+@app.route('/funds', methods=['GET'])
+def get_funds():
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    
+    # Main get and joins for funds
+    cursor.execute("""
+        SELECT 
+            f.fund_id,
+            f.fund_symbol,
+            f.net_assets,
+            f.net_expense_ratio,
+            f.portfolio_turnover,
+            f.dividend_yield,
+            f.inception_date,
+            f.leveraged,
+            f.domestic_equities,
+            f.foreign_equities,
+            f.bond,
+            f.cash,
+            f.other,
+            s.sector_id,
+            s.sector,
+            s.weight as sector_weight,
+            h.holding_id,
+            h.stock_symbol,
+            h.stock_name,
+            h.weight as holding_weight
+        FROM funds f
+        LEFT JOIN sectors s ON f.fund_id = s.fund_id
+        LEFT JOIN holdings h ON f.fund_id = h.fund_id
+        ORDER BY f.fund_id, s.sector_id, h.holding_id
+    """)
+    
+    rows = cursor.fetchall()
+    conn.close()
+    
+    # Structure for nested dictionary
+    funds_dict = {}
+    
+    for row in rows:
+        fund_id = row[0]
+        
+        
+        if fund_id not in funds_dict:
+            funds_dict[fund_id] = {
+                "fund_id": row[0],
+                "fund_symbol": row[1],
+                "net_assets": row[2],
+                "net_expense_ratio": row[3],
+                "portfolio_turnover": row[4],
+                "dividend_yield": row[5],
+                "inception_date": row[6].isoformat() if row[6] else None,  
+                "leveraged": row[7],
+                "domestic_equities": row[8],
+                "foreign_equities": row[9],
+                "bond": row[10],
+                "cash": row[11],
+                "other": row[12],
+                "sectors": [],
+                "holdings": []
+            }
+        
+        if row[13]:  # sector_id exists
+            sector = {
+                "sector_id": row[13],
+                "sector": row[14],
+                "weight": row[15]
+            }
+            if sector not in funds_dict[fund_id]["sectors"]:
+                funds_dict[fund_id]["sectors"].append(sector)
+        
+        if row[16]:  # holding_id exists
+            holding = {
+                "holding_id": row[16],
+                "stock_symbol": row[17],
+                "stock_name": row[18],
+                "weight": row[19]
+            }
+            if holding not in funds_dict[fund_id]["holdings"]:
+                funds_dict[fund_id]["holdings"].append(holding)
+    
+    funds = list(funds_dict.values())
+    
+    return jsonify(funds)
 
 if __name__ == '__main__':
     app.run(debug=True)
