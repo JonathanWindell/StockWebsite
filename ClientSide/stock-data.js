@@ -204,6 +204,31 @@ async function companyOverview() {
     }
 }
 
+async function fundsOverview() {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/funds');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const fundsOverview = await response.json();
+        console.log('Fetched data:', fundsOverview);
+        
+        if (fundsOverview && fundsOverview.length > 0) {
+            displayFundsOverview(fundsOverview);
+        } else {
+            console.error('No funds overview data found.');
+            document.getElementById('funds-overview-basic').innerHTML = 
+                '<p>No information found.</p>';
+        }
+    } catch (error) {
+        console.error('Could not fetch funds overview:', error);
+        document.getElementById('funds-overview-basic').innerHTML =
+            `<p>Just some small technical issues. Hold on!: ${error.message}</p>`;
+    }
+}
+
 
 function showStockData(stockPrices) {
     const buttons = document.querySelectorAll("#StockMenu button");
@@ -565,6 +590,8 @@ function showCompanyOverview(companyOverview, ticker) {
         advancedSection.innerHTML = noDataMessage;
     }
 }
+
+
 
 function displayNoDataMessage() {
 
