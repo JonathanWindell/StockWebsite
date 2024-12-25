@@ -31,7 +31,6 @@ async function fetchStockPrices() {
     })();
 }
 
-
 function displayStockPrices(stockPrices) {
     const stockTableBody = document.getElementById('stockTableBody');
     stockTableBody.innerHTML = ''; 
@@ -205,34 +204,7 @@ async function fundsOverview() {
     }
 }
 
-// Kör funktionen när sidan laddas
 document.addEventListener('DOMContentLoaded', fundsOverview);
-
-async function fundsOverview() {
-    try {
-        const response = await fetch('http://127.0.0.1:5000/funds');
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const fundsOverview = await response.json();
-        console.log('Fetched data:', fundsOverview);
-        
-        if (fundsOverview && fundsOverview.length > 0) {
-            displayFundsOverview(fundsOverview);
-        } else {
-            console.error('No funds overview data found.');
-            document.getElementById('funds-overview-basic').innerHTML = 
-                '<p>No information found.</p>';
-        }
-    } catch (error) {
-        console.error('Could not fetch funds overview:', error);
-        document.getElementById('funds-overview-basic').innerHTML =
-            `<p>Just some small technical issues. Hold on!: ${error.message}</p>`;
-    }
-}
-
 
 function showStockData(stockPrices) {
     const buttons = document.querySelectorAll("#StockMenu button");
@@ -386,17 +358,6 @@ function formatNumber(number) {
 function formatDate(dateString) {
     if (!dateString) return 'N/A';
     return new Date(dateString).toLocaleDateString();
-}
-
-// Exempel på hur man anropar API:et och använder funktionen
-async function fetchAndDisplayFunds() {
-    try {
-        const response = await fetch('/funds');
-        const funds = await response.json();
-        displayFundsOverview(funds);
-    } catch (error) {
-        console.error('Error fetching funds:', error);
-    }
 }
 
 function displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL) {
