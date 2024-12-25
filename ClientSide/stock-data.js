@@ -175,34 +175,38 @@ document.addEventListener('DOMContentLoaded', function() {
     companyOverview();
 });
 
-async function companyOverview() {
+async function fundsOverview() {
     try {
-        const response = await fetch('http://127.0.0.1:5000/company-overview');
+        const response = await fetch('http://127.0.0.1:5000/funds');
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         
-        const companyOverview = await response.json();
-        console.log('Fetched data:', companyOverview);
+        const fundsOverview = await response.json();
+        console.log('Fetched data:', fundsOverview);
         
-        if (companyOverview && companyOverview.length > 0) {
-            // Sätt upp event listeners för meny-knapparna
-            setupMenuListeners(companyOverview);
-            
-            // Om du vill visa någon initial data kan du behålla detta
-            displayCompanyOverview(companyOverview);
+        if (fundsOverview && fundsOverview.length > 0) {
+            displayFundsOverview(fundsOverview);  // Använder vår display-funktion
         } else {
-            console.error('No company overview data found.');
-            document.getElementById('company-overview-basic').innerHTML = 
-                '<p>No information found.</p>';
+            console.error('No funds overview data found.');
+            // Uppdatera alla containers för att visa felmeddelandet
+            document.getElementById('fundsTableBody').innerHTML = '<p>No information found.</p>';
+            document.getElementById('sectorTableBody').innerHTML = '<p>No information found.</p>';
+            document.getElementById('holdingTableBody').innerHTML = '<p>No information found.</p>';
         }
     } catch (error) {
-        console.error('Could not fetch company overview:', error);
-        document.getElementById('company-overview-basic').innerHTML = 
-            `<p>Just some small technical issues. Hold on!: ${error.message}</p>`;
+        console.error('Could not fetch funds overview:', error);
+        // Uppdatera alla containers för att visa felmeddelandet
+        const errorMessage = `<p>Just some small technical issues. Hold on!: ${error.message}</p>`;
+        document.getElementById('fundsTableBody').innerHTML = errorMessage;
+        document.getElementById('sectorTableBody').innerHTML = errorMessage;
+        document.getElementById('holdingTableBody').innerHTML = errorMessage;
     }
 }
+
+// Kör funktionen när sidan laddas
+document.addEventListener('DOMContentLoaded', fundsOverview);
 
 async function fundsOverview() {
     try {
@@ -302,50 +306,98 @@ function displayFundsOverview(fundsOverview) {
     const fundsTableBody = document.getElementById('fundsTableBody');
     const sectorTableBody = document.getElementById('sectorTableBody');
     const holdingTableBody = document.getElementById('holdingTableBody');
-    fundsTableBody.innerHTML = '';
+    
+    let fundsContent = '';
+    let sectorContent = '';
+    let holdingContent = '';
 
     fundsOverview.forEach(fund => {
+        // Fund information
         fundsContent += `
-        <dl class fund-list>
-            <dt>${fund.fund_id}</dt>
+        <dl class="fund-list">
+            <dt>Fund ID:</dt>
+            <dd>${fund.fund_id}</dd>
+            <dt>Symbol:</dt>
             <dd>${fund.fund_symbol}</dd>
-            <dd>${fund.net_assets}</dd>
-            <dd>${fund.net_expense_ratio}</dd>
-            <dd>${fund.portfolio_turnover}</dd>
-            <dd>${fund.dividend_yield}</dd>
-            <dd>${fund.inception_date}</dd>
-            <dd>${fund.leveraged}</dd>
-            <dd>${fund.domestic_equities}</dd>
-            <dd>${fund.international_equities}</dd>
-            <dd>${fund.foreign_equities}</dd>
-            <dd>${fund.bond}</dd>
-            <dd>${fund.cash}</dd>
-            <dd>${fund.other}</dd>
-        </dl>
-        `;
-        sectorContent += `
-        <dl class sector-list>
-            <dt>${fund.sector_id}</dt>
-            <dd>${fund.sector}</dd>
-            <dd>${fund.weight}</dd>
-        </dl>
-        `;
-        holdingContent += `
-        <dl class holding-list>
-            <dt>${fund.holding_id}</dt>
-            <dd>${fund.stock_symbol}</dd>
-            <dd>${fund.stock_name}</dd>
-            <dd>${fund.weight}</dd>
-        </dl>
-        `;
-        
+            <dt>Net Assets:</dt>
+            <dd>${formatNumber(fund.net_assets)}</dd>
+            <dt>Expense Ratio:</dt>
+            <dd>${(fund.net_expense_ratio * 100).toFixed(2)}%</dd>
+            <dt>Turnover:</dt>
+            <dd>${(fund.portfolio_turnover * 100).toFixed(2)}%</dd>
+            <dt>Dividend Yield:</dt>
+            <dd>${(fund.dividend_yield * 100).toFixed(2)}%</dd>
+            <dt>Inception Date:</dt>
+            <dd>${formatDate(fund.inception_date)}</dd>
+            <dt>Leveraged:</dt>
+            <dd>${fund.leveraged ? 'Yes' : 'No'}</dd>
+            <dt>Domestic Equities:</dt>
+            <dd>${(fund.domestic_equities * 100).toFixed(2)}%</dd>
+            <dt>Foreign Equities:</dt>
+            <dd>${(fund.foreign_equities * 100).toFixed(2)}%</dd>
+            <dt>Bond:</dt>
+            <dd>${(fund.bond * 100).toFixed(2)}%</dd>
+            <dt>Cash:</dt>
+            <dd>${(fund.cash * 100).toFixed(2)}%</dd>
+            <dt>Other:</dt>
+            <dd>${(fund.other * 100).toFixed(2)}%</dd>
+        </dl>`;
+
+        // Sector Information
+        fund.sectors.forEach(sector => {
+            sectorContent += `
+            <dl class="sector-list">
+                <dt>Sector:</dt>
+                <dd>${sector.sector}</dd>
+                <dt>Weight:</dt>
+                <dd>${(sector.weight * 100).toFixed(2)}%</dd>
+            </dl>`;
+        });
+
+        // Holding Information
+        fund.holdings.forEach(holding => {
+            holdingContent += `
+            <dl class="holding-list">
+                <dt>Symbol:</dt>
+                <dd>${holding.stock_symbol}</dd>
+                <dt>Name:</dt>
+                <dd>${holding.stock_name}</dd>
+                <dt>Weight:</dt>
+                <dd>${(holding.weight * 100).toFixed(2)}%</dd>
+            </dl>`;
+        });
     });
-    holdingContent.innerHTML = holdingSector;
-    sectorContent.innerHTML = sectorContent;
+
+    // Uppdate DOM
     fundsTableBody.innerHTML = fundsContent;
+    sectorTableBody.innerHTML = sectorContent;
+    holdingTableBody.innerHTML = holdingContent;
 }
 
+function formatNumber(number) {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(number);
+}
 
+function formatDate(dateString) {
+    if (!dateString) return 'N/A';
+    return new Date(dateString).toLocaleDateString();
+}
+
+// Exempel på hur man anropar API:et och använder funktionen
+async function fetchAndDisplayFunds() {
+    try {
+        const response = await fetch('/funds');
+        const funds = await response.json();
+        displayFundsOverview(funds);
+    } catch (error) {
+        console.error('Error fetching funds:', error);
+    }
+}
 
 function displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableAAPL');
@@ -477,78 +529,6 @@ function displayQuarterlyEarningsIBM(quarterlyEarningsIBM) {
         `;
         quarterlyEarningsTableBody.appendChild(row);
     });
-}
-
-function displayFundsOverview(fundsOverview) {
-    const fundsTableBody = document.getElementById('fundsTableBody');
-    const sectorTableBody = document.getElementById('sectorTableBody');
-    const holdingTableBody = document.getElementById('holdingTableBody');
-    
-    let fundsContent = '';
-    let sectorContent = '';
-    let holdingContent = '';
-
-    fundsOverview.forEach(fund => {
-        // Fund information
-        fundsContent += `
-        <dl class="fund-list">
-            <dt>Fund ID:</dt>
-            <dd>${fund.fund_id}</dd>
-            <dt>Symbol:</dt>
-            <dd>${fund.fund_symbol}</dd>
-            <dt>Net Assets:</dt>
-            <dd>${formatNumber(fund.net_assets)}</dd>
-            <dt>Expense Ratio:</dt>
-            <dd>${(fund.net_expense_ratio * 100).toFixed(2)}%</dd>
-            <dt>Turnover:</dt>
-            <dd>${(fund.portfolio_turnover * 100).toFixed(2)}%</dd>
-            <dt>Dividend Yield:</dt>
-            <dd>${(fund.dividend_yield * 100).toFixed(2)}%</dd>
-            <dt>Inception Date:</dt>
-            <dd>${formatDate(fund.inception_date)}</dd>
-            <dt>Leveraged:</dt>
-            <dd>${fund.leveraged ? 'Yes' : 'No'}</dd>
-            <dt>Domestic Equities:</dt>
-            <dd>${(fund.domestic_equities * 100).toFixed(2)}%</dd>
-            <dt>Foreign Equities:</dt>
-            <dd>${(fund.foreign_equities * 100).toFixed(2)}%</dd>
-            <dt>Bond:</dt>
-            <dd>${(fund.bond * 100).toFixed(2)}%</dd>
-            <dt>Cash:</dt>
-            <dd>${(fund.cash * 100).toFixed(2)}%</dd>
-            <dt>Other:</dt>
-            <dd>${(fund.other * 100).toFixed(2)}%</dd>
-        </dl>`;
-
-        // Sector Information
-        fund.sectors.forEach(sector => {
-            sectorContent += `
-            <dl class="sector-list">
-                <dt>Sector:</dt>
-                <dd>${sector.sector}</dd>
-                <dt>Weight:</dt>
-                <dd>${(sector.weight * 100).toFixed(2)}%</dd>
-            </dl>`;
-        });
-
-        // Holding Information
-        fund.holdings.forEach(holding => {
-            holdingContent += `
-            <dl class="holding-list">
-                <dt>Symbol:</dt>
-                <dd>${holding.stock_symbol}</dd>
-                <dt>Name:</dt>
-                <dd>${holding.stock_name}</dd>
-                <dt>Weight:</dt>
-                <dd>${(holding.weight * 100).toFixed(2)}%</dd>
-            </dl>`;
-        });
-    });
-
-    // Uppdate DOM
-    fundsTableBody.innerHTML = fundsContent;
-    sectorTableBody.innerHTML = sectorContent;
-    holdingTableBody.innerHTML = holdingContent;
 }
 
 function setupMenuListeners(companyOverview) {
