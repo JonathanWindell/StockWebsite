@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktiedata</title>
+    <link rel="stylesheet" href="Client.css">
+</head>
+<body>
+    <h1>Company Overview</h1>
+    <!--Menu section-->
+<section id="menuSection">
+    <a href="Homepage.html">
+        <img src="Pictures/HomeLogo2.png" alt="HomePage" id="homepage">
+        <p class="HomepageText">Homepage</p>
+    </a>
+    <a href="StockPrices.html">
+        <img src="Pictures/market-research.png" alt="StockPrices" id="stockprices">
+        <p class="StockPricesText">Stock Prices</p>
+    </a>
+    <a href="AnnualEarnings.html">
+        <img src="Pictures/calendar-symbol.svg" alt="AnnualEarnings" id="annualearnings">
+        <p class="AnnualEarningsText">Annual Earnings</p>
+    </a>
+    <a href="QuarterlyEarnings.html">
+        <img src="Pictures/financial-report.png" alt="QuarterlyEarnings" id="quarterlyearnings">
+        <p class="QuarterlyEarningsText">Quarterly Earnings</p>
+    </a>
+</section>
+<section id="AnnualEarningsMenu"><!--ändra namn så det funkar för båda?-->
+    <div class="annualEarningsChoices">
+        <button id="btn-stock-AAPL" data-ticker="AAPL">
+            <img src="Pictures/AAPLTicker1.png" alt="Apple" id="apple">
+            AAPL</button>
+        <button id="btn-stock-GOOGL" data-ticker="GOOGL">
+            <img src="Pictures/GOOGLTicker.png" alt="Google" id="google">
+            GOOGL
+        </button>
+        <button id="btn-stock-MSFT" data-ticker="MSFT">
+            <img src="Pictures/MSFTTicker.png" alt="Microsoft" id="microsoft">
+            MSFT</button>
+        <button id="btn-stock-TSLA" data-ticker="TSLA">
+            <img src="Pictures/TeslaTicker.png" alt="Tesla" id="tesla">TSLA</button>
+        <button id="btn-stock-AMZN" data-ticker="AMZN">
+            <img src="Pictures/AMZTicker.png" alt="Amazon" id="amazon">
+            AMZN</button>
+        <button id="btn-stock-NVDA" data-ticker="NVDA">
+            <img src="Pictures/NVDATicker2.png" alt="Nvidia" id="nvidia">
+            NVDA</button>
+        <button id="btn-stock-IBM" data-ticker="IBM">
+            <img src="Pictures/IBMTicker1.png" alt="IBM" id="ibm">
+            IBM</button>
+    </div>  
+    </div>
+</section>
+    <!--Script section-->
+    <section id="scriptSection"> 
+        <script src="stock-data.js"></script>
+    </section>
+</body>
+</html> 

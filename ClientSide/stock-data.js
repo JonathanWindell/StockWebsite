@@ -298,6 +298,55 @@ function showEarningsData(annualEarningsData) {
     });
 }
 
+function displayFundsOverview(fundsOverview) {
+    const fundsTableBody = document.getElementById('fundsTableBody');
+    const sectorTableBody = document.getElementById('sectorTableBody');
+    const holdingTableBody = document.getElementById('holdingTableBody');
+    fundsTableBody.innerHTML = '';
+
+    fundsOverview.forEach(fund => {
+        fundsContent += `
+        <dl class fund-list>
+            <dt>${fund.fund_id}</dt>
+            <dd>${fund.fund_symbol}</dd>
+            <dd>${fund.net_assets}</dd>
+            <dd>${fund.net_expense_ratio}</dd>
+            <dd>${fund.portfolio_turnover}</dd>
+            <dd>${fund.dividend_yield}</dd>
+            <dd>${fund.inception_date}</dd>
+            <dd>${fund.leveraged}</dd>
+            <dd>${fund.domestic_equities}</dd>
+            <dd>${fund.international_equities}</dd>
+            <dd>${fund.foreign_equities}</dd>
+            <dd>${fund.bond}</dd>
+            <dd>${fund.cash}</dd>
+            <dd>${fund.other}</dd>
+        </dl>
+        `;
+        sectorContent += `
+        <dl class sector-list>
+            <dt>${fund.sector_id}</dt>
+            <dd>${fund.sector}</dd>
+            <dd>${fund.weight}</dd>
+        </dl>
+        `;
+        holdingContent += `
+        <dl class holding-list>
+            <dt>${fund.holding_id}</dt>
+            <dd>${fund.stock_symbol}</dd>
+            <dd>${fund.stock_name}</dd>
+            <dd>${fund.weight}</dd>
+        </dl>
+        `;
+        
+    });
+    holdingContent.innerHTML = holdingSector;
+    sectorContent.innerHTML = sectorContent;
+    fundsTableBody.innerHTML = fundsContent;
+}
+
+
+
 function displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableAAPL');
     quarterlyEarningsTableBody.innerHTML = ''; 
@@ -430,78 +479,76 @@ function displayQuarterlyEarningsIBM(quarterlyEarningsIBM) {
     });
 }
 
-function displayCompanyOverview(companyOverview) {
-    // Get correct element IDs (matching your HTML)
-    const basicSection = document.querySelector('#CompanyOverviewBasic #company-overview-basic');
-    const analystSection = document.querySelector('#CompanyOverviewAnalyst #company-overview-analyst');
-    const advancedSection = document.querySelector('#CompanyOverviewAdvanced #company-overview-advanced');
+function displayFundsOverview(fundsOverview) {
+    const fundsTableBody = document.getElementById('fundsTableBody');
+    const sectorTableBody = document.getElementById('sectorTableBody');
+    const holdingTableBody = document.getElementById('holdingTableBody');
     
-    if (!basicSection || !analystSection || !advancedSection) {
-        console.error('Could not find one or more section elements');
-        return;
-    }
+    let fundsContent = '';
+    let sectorContent = '';
+    let holdingContent = '';
 
-    let basicContent = '';
-    let analystContent = '';
-    let advancedContent = '';
+    fundsOverview.forEach(fund => {
+        // Fund information
+        fundsContent += `
+        <dl class="fund-list">
+            <dt>Fund ID:</dt>
+            <dd>${fund.fund_id}</dd>
+            <dt>Symbol:</dt>
+            <dd>${fund.fund_symbol}</dd>
+            <dt>Net Assets:</dt>
+            <dd>${formatNumber(fund.net_assets)}</dd>
+            <dt>Expense Ratio:</dt>
+            <dd>${(fund.net_expense_ratio * 100).toFixed(2)}%</dd>
+            <dt>Turnover:</dt>
+            <dd>${(fund.portfolio_turnover * 100).toFixed(2)}%</dd>
+            <dt>Dividend Yield:</dt>
+            <dd>${(fund.dividend_yield * 100).toFixed(2)}%</dd>
+            <dt>Inception Date:</dt>
+            <dd>${formatDate(fund.inception_date)}</dd>
+            <dt>Leveraged:</dt>
+            <dd>${fund.leveraged ? 'Yes' : 'No'}</dd>
+            <dt>Domestic Equities:</dt>
+            <dd>${(fund.domestic_equities * 100).toFixed(2)}%</dd>
+            <dt>Foreign Equities:</dt>
+            <dd>${(fund.foreign_equities * 100).toFixed(2)}%</dd>
+            <dt>Bond:</dt>
+            <dd>${(fund.bond * 100).toFixed(2)}%</dd>
+            <dt>Cash:</dt>
+            <dd>${(fund.cash * 100).toFixed(2)}%</dd>
+            <dt>Other:</dt>
+            <dd>${(fund.other * 100).toFixed(2)}%</dd>
+        </dl>`;
 
-    companyOverview.forEach(overview => {
-        // Basic section content
-        basicContent += `
-            <dl class="overview-list">
-                <dt>Name</dt><dd>${overview.name || 'N/A'}</dd>
-                <dt>Asset Type</dt><dd>${overview.asset_type || 'N/A'}</dd>
-                <dt>Description</dt><dd>${overview.description || 'N/A'}</dd>
-                <dt>Exchange</dt><dd>${overview.exchange || 'N/A'}</dd>
-                <dt>Country</dt><dd>${overview.country || 'N/A'}</dd>
-                <dt>Sector</dt><dd>${overview.sector || 'N/A'}</dd>
-                <dt>Fiscal Year End</dt><dd>${overview.fiscal_year_end || 'N/A'}</dd>
-                <dt>Latest Quarter</dt><dd>${overview.latest_quarter || 'N/A'}</dd>
-                <dt>Market Capitalization</dt><dd>${overview.market_capitalization || 'N/A'}</dd>
-                <dt>Dividend Date</dt><dd>${overview.dividend_date || 'N/A'}</dd>
-                <dt>Dividend Per Share</dt><dd>${overview.dividend_per_share || 'N/A'}</dd>
-                <dt>Dividend Yield</dt><dd>${overview.dividend_yield || 'N/A'}</dd>
-                <dt>Ebitda</dt><dd>${overview.ebitda || 'N/A'}</dd>
-            </dl>
-        `;
+        // Sector Information
+        fund.sectors.forEach(sector => {
+            sectorContent += `
+            <dl class="sector-list">
+                <dt>Sector:</dt>
+                <dd>${sector.sector}</dd>
+                <dt>Weight:</dt>
+                <dd>${(sector.weight * 100).toFixed(2)}%</dd>
+            </dl>`;
+        });
 
-        // Analyst section content
-        analystContent += `
-            <dl class="overview-list">
-                <dt>Analyst Rating Strong Buy</dt><dd>${overview.analyst_rating_strong_buy || 'N/A'}</dd>
-                <dt>Analyst Rating Buy</dt><dd>${overview.analyst_rating_buy || 'N/A'}</dd>
-                <dt>Analyst Rating Hold</dt><dd>${overview.analyst_rating_hold || 'N/A'}</dd>
-                <dt>Analyst Rating Sell</dt><dd>${overview.analyst_rating_sell || 'N/A'}</dd>
-                <dt>Moving Average 50 Day</dt><dd>${overview.moving_average_50_day || 'N/A'}</dd>
-                <dt>Week 52 High</dt><dd>${overview.week_52_high || 'N/A'}</dd>
-                <dt>Week 52 Low</dt><dd>${overview.week_52_low || 'N/A'}</dd>
-            </dl>
-        `;
-
-        // Advanced section content
-        advancedContent += `
-            <dl class="overview-list">
-                <dt>Shares Outstanding</dt><dd>${overview.shares_outstanding || 'N/A'}</dd>
-                <dt>Quarterly Earnings Growth YOY</dt><dd>${overview.quarterly_earnings_growth_yoy || 'N/A'}</dd>
-                <dt>Quarterly Revenue Growth YOY</dt><dd>${overview.quarterly_revenue_growth_yoy || 'N/A'}</dd>
-                <dt>Return on Assets TTM</dt><dd>${overview.return_on_assets_ttm || 'N/A'}</dd>
-                <dt>Return on Equity TTM</dt><dd>${overview.return_on_equity_ttm || 'N/A'}</dd>
-                <dt>Revenue TTM</dt><dd>${overview.revenue_ttm || 'N/A'}</dd>
-                <dt>Profit Margin</dt><dd>${overview.profit_margin || 'N/A'}</dd>
-                <dt>Book Value</dt><dd>${overview.book_value || 'N/A'}</dd>
-                <dt>Trailing PE</dt><dd>${overview.trailing_pe || 'N/A'}</dd>
-                <dt>Forward PE</dt><dd>${overview.forward_pe || 'N/A'}</dd>
-                <dt>PE Ratio</dt><dd>${overview.pe_ratio || 'N/A'}</dd>
-                <dt>PEG Ratio</dt><dd>${overview.peg_ratio || 'N/A'}</dd>
-                <dt>Diluted EPS TTM</dt><dd>${overview.diluted_eps_ttm || 'N/A'}</dd>
-            </dl>
-        `;
+        // Holding Information
+        fund.holdings.forEach(holding => {
+            holdingContent += `
+            <dl class="holding-list">
+                <dt>Symbol:</dt>
+                <dd>${holding.stock_symbol}</dd>
+                <dt>Name:</dt>
+                <dd>${holding.stock_name}</dd>
+                <dt>Weight:</dt>
+                <dd>${(holding.weight * 100).toFixed(2)}%</dd>
+            </dl>`;
+        });
     });
 
-    // Update the innerHTML of each section
-    basicSection.innerHTML = basicContent || '<p>No information found</p>';
-    analystSection.innerHTML = analystContent || '<p>No information found</p>';
-    advancedSection.innerHTML = advancedContent || '<p>No information found</p>';
+    // Uppdate DOM
+    fundsTableBody.innerHTML = fundsContent;
+    sectorTableBody.innerHTML = sectorContent;
+    holdingTableBody.innerHTML = holdingContent;
 }
 
 function setupMenuListeners(companyOverview) {
