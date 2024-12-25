@@ -374,3 +374,18 @@ h1 {
 
 /*Funds Overview*/
 /*Funds Overview*/
+.funds{
+    color: white;
+}
+
+.sectors {
+    color: white;
+}
+
+.holdings {
+    color: white;
+}
+
+#fundsTableBody {
+    color:white;
+}
