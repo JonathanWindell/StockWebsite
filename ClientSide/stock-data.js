@@ -1,5 +1,13 @@
-//Show stock prices
+//Sidebar navigation
+const toggleBtn = document.getElementById('toggle-btn');
+const sidebar = document.getElementById('sidebar');
 
+// Funktion för att toggla sidomenyn
+toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('open'); // Toggla klassen 'open' för att öppna/stänga
+});
+
+//Fetch stock prices
 async function fetchStockPrices() {
     try {
         const response = await fetch('http://127.0.0.1:5000/stock-data?tickers=AAPL,GOOGL,MSFT,NVDA,TSLA,AMZN');
