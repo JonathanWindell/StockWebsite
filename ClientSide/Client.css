@@ -190,35 +190,61 @@ h1 {
 
 /*Annualearnings table body*/
 #annualEarningsTable {
-    position: relative;
-    border-spacing: 20px; 
-    border-collapse: separate; 
-    top: 100px;
-    left: 15%;
+    width: 80%;
+    margin-left: 10%;
     font-size: large;
-    width: 70%; 
-    border-collapse: collapse;
     background-color: #454545;
-    border: 2px solid #ccc; 
+    border-radius: 5px;
+    border-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    overflow-x: auto;
+    border: 2px solid #ccc;
+    border-collapse: collapse; 
 }
 
-#annualEarningsTable th, #annualEarningsTable td {
-    padding: 20px; 
-    padding-top: 12px;
-    padding-bottom: 12px;
+.table-wrapper {
+    max-height: 1100px;
+    overflow-y: auto;
+    border-radius: 5px; 
+    margin-top: 80px;
+}
+
+#annualEarningsTable thead th {
+    position: sticky;
+    top: 0;
+    background-color: #454545;
+    z-index: 1;
+    padding: 20px;
     text-align: left;
     color: white;
 }
 
-#annualEarningsTable tr {
-    border-bottom: 1px solid black;
+#annualEarningsTable td {
+    padding: 20px;
+    text-align: left;
+    color: white;
 }
 
-#annualEarningsTable tr:hover {
-    background-color: #28282b; 
+#annualEarningsTable tbody tr:hover {
+    background-color: #525252;
+}
+
+.table-wrapper::-webkit-scrollbar {
+    width: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #383838;
+    border-radius: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #777;
+    
 }
 
 #AnnualEarningsMenu {
@@ -262,8 +288,7 @@ h1 {
 /*Quarterlyearnings table body*/
 #quarterlyEarningsTable {
     width: 80%;
-    margin-left: 20%;
-    margin-top: 80px;
+    margin-left: 10%;
     font-size: large;
     background-color: #454545;
     border-radius: 5px;
@@ -318,6 +343,7 @@ h1 {
 
 .table-wrapper::-webkit-scrollbar-thumb:hover {
     background: #777;
+    
 }
 
 /*Company overview*/
