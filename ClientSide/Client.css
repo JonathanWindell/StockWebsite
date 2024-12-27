@@ -261,35 +261,63 @@ h1 {
 
 /*Quarterlyearnings table body*/
 #quarterlyEarningsTable {
-    position: relative;
-    border-spacing: 20px; 
-    border-collapse: separate; 
-    top: 80px;
-    left: 20%;
-    font-size: large;
     width: 80%;
-    border-collapse: collapse;
+    margin-left: 20%;
+    margin-top: 80px;
+    font-size: large;
     background-color: #454545;
     border-radius: 5px;
+    border-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    border: 2px solid #ccc; 
-    overflow-x: auto;
+    border: 2px solid #ccc;
+    border-collapse: collapse; 
 }
 
-#quarterlyEarningsTable th, #quarterlyEarningsTable td {
-    padding: 20px; 
-    padding-top: 12px;
-    padding-bottom: 12px;
+/* Wrapper för scrollning */
+.table-wrapper {
+    max-height: 1100px;
+    overflow-y: auto;
+    border-radius: 5px; 
+    margin-top: 80px;
+}
+
+/* Sticky header */
+#quarterlyEarningsTable thead th {
+    position: sticky;
+    top: 0;
+    background-color: #454545;
+    z-index: 1;
+    padding: 20px;
     text-align: left;
     color: white;
 }
 
-#quarterlyEarningsTable tr {
-    border-bottom: 1px solid black;
+#quarterlyEarningsTable td {
+    padding: 20px;
+    text-align: left;
+    color: white;
 }
 
-#quarterlyEarningsTable tr:hover {
-    background-color: #28282b; 
+#quarterlyEarningsTable tbody tr:hover {
+    background-color: #525252;
+}
+
+.table-wrapper::-webkit-scrollbar {
+    width: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #383838;
+    border-radius: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #777;
 }
 
 /*Company overview*/
