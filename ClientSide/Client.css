@@ -373,19 +373,119 @@ h1 {
 }
 
 /*Funds Overview*/
-/*Funds Overview*/
 .funds{
     color: white;
+    position: absolute;
+    left: 150px;
 }
 
 .sectors {
     color: white;
+    position: absolute;
+    left: 550px;
 }
 
 .holdings {
     color: white;
+    position: absolute;
+    top: 880px;
+    left: 300px;
+}
+
+#fundsTableBody, #sectorTableBody, #holdingTableBody dl {
+    display: grid;
+    grid-gap: 4px 16px;
+    grid-template-columns: max-content;
+}
+
+#fundsTableBody dt, #sectorTableBody dt, #holdingTableBody dt {
+    font-weight: bold;
+    font-size: large;
+}
+
+#fundsTableBody dd, #sectorTableBody dd, #holdingTableBody dd {
+    margin: 0;
+    grid-column-start: 2;
+    line-height: 1.5;
+}
+
+#fundsTableBody, #sectorTableBody, #holdingTableBody {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#fundsTableBody {
+    position: absolute;
+    left: 100px;
+    top: 250px;
 }
 
 #fundsTableBody {
     color:white;
+    background-color: #454545;
+    width: 300px;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    border: 2px solid #ccc;
 }
+
+#sectorTableBody {
+    position: absolute;
+    left: 500px;
+    top: 250px;
+}
+
+#sectorTableBody {
+    color: white;
+    background-color: #454545;
+    width: 300px;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    border: 2px solid #ccc;
+    column-count: 2;
+    flex-direction: column;
+    overflow-y: auto; 
+    max-height: 605px;
+}
+
+#holdingTableBody {
+    position: absolute;
+    left: 100px;
+    top: 950px;
+}
+
+#holdingTableBody {
+    color: white;
+    background-color: #454545;
+    width: 600px;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    border: 2px solid #ccc;
+    column-count: 2;
+    flex-direction: column;
+    overflow-y: auto; 
+    max-height: 700px;
+}
+
+.holding-item {
+    break-inside: avoid;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.holding-item span {
+    display: block;
+    margin: 2px 0;
+}
+

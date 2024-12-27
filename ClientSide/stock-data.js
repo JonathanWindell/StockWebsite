@@ -318,25 +318,29 @@ function displayFundsOverview(fundsOverview) {
         // Sector Information
         fund.sectors.forEach(sector => {
             sectorContent += `
-            <dl class="sector-list">
-                <dt>Sector:</dt>
-                <dd>${sector.sector}</dd>
-                <dt>Weight:</dt>
-                <dd>${(sector.weight * 100).toFixed(2)}%</dd>
-            </dl>`;
+            <div class="sector-item">
+                <dl class="sector-list">
+                    <dt>Sector:</dt>
+                    <dd>${sector.sector}</dd>
+                    <dt>Weight:</dt>
+                    <dd>${(sector.weight * 100).toFixed(2)}%</dd>
+                </dl>
+            </div>`;
         });
 
         // Holding Information
         fund.holdings.forEach(holding => {
             holdingContent += `
-            <dl class="holding-list">
-                <dt>Symbol:</dt>
-                <dd>${holding.stock_symbol}</dd>
-                <dt>Name:</dt>
-                <dd>${holding.stock_name}</dd>
-                <dt>Weight:</dt>
-                <dd>${(holding.weight * 100).toFixed(2)}%</dd>
-            </dl>`;
+            <div class="holding-item">
+                <dl class="holding-list">
+                    <dt>Symbol:</dt>
+                    <dd>${holding.stock_symbol}</dd>
+                    <dt>Name:</dt>
+                    <dd>${holding.stock_name}</dd>
+                    <dt>Weight:</dt>
+                    <dd>${(holding.weight * 100).toFixed(2)}%</dd>
+                </dl>
+            </div>`;
         });
     });
 
