@@ -2,10 +2,29 @@
 const toggleBtn = document.getElementById('toggle-btn');
 const sidebar = document.getElementById('sidebar');
 
-// Funktion för att toggla sidomenyn
 toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('open'); // Toggla klassen 'open' för att öppna/stänga
+    sidebar.classList.toggle('open'); 
 });
+
+//Functions for format
+function formatNumber(number) {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(number);
+}
+
+function formatPercentage(number) {
+    return number ? number.toFixed(2) + '%' : 'N/A';
+}
+
+function formatDate(dateString) {
+    if (!dateString) return 'N/A';
+    return new Date(dateString).toLocaleDateString();
+}
+
 
 //Fetch stock prices
 async function fetchStockPrices() {
@@ -47,11 +66,11 @@ function displayStockPrices(stockPrices) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${stock.ticker}</td>
-            <td>${stock.open_price}</td>
-            <td>${stock.high_price}</td>
-            <td>${stock.low_price}</td>
-            <td>${stock.close_price}</td>
-            <td>${stock.volume}</td>
+            <td>${formatNumber(stock.open_price)}</td>
+            <td>${formatNumber(stock.high_price)}</td>
+            <td>${formatNumber(stock.low_price)}</td>
+            <td>${formatNumber(stock.close_price)}</td>
+            <td>${formatNumber(stock.volume)}</td>
             <td>${stock.latest_date}</td>
         `;
         stockTableBody.appendChild(row);
@@ -390,20 +409,6 @@ function displayFundsOverview(fundsOverview) {
     holdingTableBody.innerHTML = holdingContent;
 }
 
-function formatNumber(number) {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-    }).format(number);
-}
-
-function formatDate(dateString) {
-    if (!dateString) return 'N/A';
-    return new Date(dateString).toLocaleDateString();
-}
-
 function displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableAAPL');
     quarterlyEarningsTableBody.innerHTML = ''; 
@@ -529,7 +534,7 @@ function displayQuarterlyEarningsIBM(quarterlyEarningsIBM) {
             <td>${earnings.reported_eps}</td>
             <td>${earnings.estimated_eps}</td>
             <td>${earnings.surprise}</td>
-            <td>${earnings.surprise_percentage}</td>
+            <td>${formatPercentage(earnings.surprise_percentage)}</td> 
             <td>${earnings.report_time}</td>
         `;
         quarterlyEarningsTableBody.appendChild(row);
@@ -571,12 +576,12 @@ function showCompanyOverview(companyOverview, ticker) {
                 <dt>Country</dt><dd>${company.country || 'N/A'}</dd>
                 <dt>Sector</dt><dd>${company.sector || 'N/A'}</dd>
                 <dt>Fiscal Year End</dt><dd>${company.fiscal_year_end || 'N/A'}</dd>
-                <dt>Latest Quarter</dt><dd>${company.latest_quarter || 'N/A'}</dd>
-                <dt>Market Capitalization</dt><dd>${company.market_capitalization || 'N/A'}</dd>
-                <dt>Dividend Date</dt><dd>${company.dividend_date || 'N/A'}</dd>
-                <dt>Dividend Per Share</dt><dd>${company.dividend_per_share || 'N/A'}</dd>
-                <dt>Dividend Yield</dt><dd>${company.dividend_yield || 'N/A'}</dd>
-                <dt>Ebitda</dt><dd>${company.ebitda || 'N/A'}</dd>
+                <dt>Latest Quarter</dt><dd>${formatDate(company.latest_quarter)}</dd>
+                <dt>Market Capitalization</dt><dd>${company.market_capitalization ? formatNumber(company.market_capitalization) : 'N/A'}</dd>
+                <dt>Dividend Date</dt><dd>${formatDate(company.dividend_date)}</dd>
+                <dt>Dividend Per Share</dt><dd>${company.dividend_per_share ? formatNumber(company.dividend_per_share) : 'N/A'}</dd>
+                <dt>Dividend Yield</dt><dd>${company.dividend_yield ? company.dividend_yield + '%' : 'N/A'}</dd>
+                <dt>Ebitda</dt><dd>${company.ebitda ? formatNumber(company.ebitda) : 'N/A'}</dd>
             </dl>
         `;
 
@@ -587,32 +592,32 @@ function showCompanyOverview(companyOverview, ticker) {
                 <dt>Analyst Rating Buy</dt><dd>${company.analyst_rating_buy || 'N/A'}</dd>
                 <dt>Analyst Rating Hold</dt><dd>${company.analyst_rating_hold || 'N/A'}</dd>
                 <dt>Analyst Rating Sell</dt><dd>${company.analyst_rating_sell || 'N/A'}</dd>
-                <dt>Moving Average 50 Day</dt><dd>${company.moving_average_50_day || 'N/A'}</dd>
-                <dt>Moving Average 200 Day</dt><dd>${company.moving_average_200_day || 'N/A'}</dd>
-                <dt>Week 52 High</dt><dd>${company.week_52_high || 'N/A'}</dd>
-                <dt>Week 52 Low</dt><dd>${company.week_52_low || 'N/A'}</dd>
+                <dt>Moving Average 50 Day</dt><dd>${company.moving_average_50_day ? formatNumber(company.moving_average_50_day) : 'N/A'}</dd>
+                <dt>Moving Average 200 Day</dt><dd>${company.moving_average_200_day ? formatNumber(company.moving_average_200_day) : 'N/A'}</dd>
+                <dt>Week 52 High</dt><dd>${company.week_52_high ? formatNumber(company.week_52_high) : 'N/A'}</dd>
+                <dt>Week 52 Low</dt><dd>${company.week_52_low ? formatNumber(company.week_52_low) : 'N/A'}</dd>
             </dl>
         `;
 
         // Advanced content
         advancedSection.innerHTML = `
             <dl class="overview-list">
-                <dt>Shares Outstanding</dt><dd>${company.shares_outstanding || 'N/A'}</dd>
-                <dt>Quarterly Earnings Growth YOY</dt><dd>${company.quarterly_earnings_growth_yoy || 'N/A'}</dd>
-                <dt>Quarterly Revenue Growth YOY</dt><dd>${company.quarterly_revenue_growth_yoy || 'N/A'}</dd>
-                <dt>Return on Assets TTM</dt><dd>${company.return_on_assets_ttm || 'N/A'}</dd>
-                <dt>Return on Equity TTM</dt><dd>${company.return_on_equity_ttm || 'N/A'}</dd>
-                <dt>Revenue TTM</dt><dd>${company.revenue_ttm || 'N/A'}</dd>
-                <dt>Profit Margin</dt><dd>${company.profit_margin || 'N/A'}</dd>
-                <dt>Book Value</dt><dd>${company.book_value || 'N/A'}</dd>
+                <dt>Shares Outstanding</dt><dd>${company.shares_outstanding ? formatNumber(company.shares_outstanding) : 'N/A'}</dd>
+                <dt>Quarterly Earnings Growth YOY</dt><dd>${company.quarterly_earnings_growth_yoy ? company.quarterly_earnings_growth_yoy + '%' : 'N/A'}</dd>
+                <dt>Quarterly Revenue Growth YOY</dt><dd>${company.quarterly_revenue_growth_yoy ? company.quarterly_revenue_growth_yoy + '%' : 'N/A'}</dd>
+                <dt>Return on Assets TTM</dt><dd>${company.return_on_assets_ttm ? company.return_on_assets_ttm + '%' : 'N/A'}</dd>
+                <dt>Return on Equity TTM</dt><dd>${company.return_on_equity_ttm ? company.return_on_equity_ttm + '%' : 'N/A'}</dd>
+                <dt>Revenue TTM</dt><dd>${company.revenue_ttm ? formatNumber(company.revenue_ttm) : 'N/A'}</dd>
+                <dt>Profit Margin</dt><dd>${company.profit_margin ? company.profit_margin + '%' : 'N/A'}</dd>
+                <dt>Book Value</dt><dd>${company.book_value ? formatNumber(company.book_value) : 'N/A'}</dd>
                 <dt>Trailing PE</dt><dd>${company.trailing_pe || 'N/A'}</dd>
                 <dt>Forward PE</dt><dd>${company.forward_pe || 'N/A'}</dd>
                 <dt>PE Ratio</dt><dd>${company.pe_ratio || 'N/A'}</dd>
                 <dt>PEG Ratio</dt><dd>${company.peg_ratio || 'N/A'}</dd>
-                <dt>Diluted EPS TTM</dt><dd>${company.diluted_eps_ttm || 'N/A'}</dd>
-                <dt>Gross Profit TTm</dt><dd>${company.gross_profit_ttm || 'N/A'}</dd>
-                <dt>Operating Margin TTM</dt><dd>${company.operating_margin_ttm || 'N/A'}</dd>
-                <dt>Price to Book ratio</dt><dd>${company.price_to_book_ratio || 'N/A'}</dd>
+                <dt>Diluted EPS TTM</dt><dd>${company.diluted_eps_ttm ? formatNumber(company.diluted_eps_ttm) : 'N/A'}</dd>
+                <dt>Gross Profit TTM</dt><dd>${company.gross_profit_ttm ? formatNumber(company.gross_profit_ttm) : 'N/A'}</dd>
+                <dt>Operating Margin TTM</dt><dd>${company.operating_margin_ttm ? company.operating_margin_ttm + '%' : 'N/A'}</dd>
+                <dt>Price to Book Ratio</dt><dd>${company.price_to_book_ratio || 'N/A'}</dd>
             </dl>
         `;
     } else {
@@ -622,8 +627,6 @@ function showCompanyOverview(companyOverview, ticker) {
         advancedSection.innerHTML = noDataMessage;
     }
 }
-
-
 
 function displayNoDataMessage() {
 

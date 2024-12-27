@@ -87,7 +87,8 @@ h1 {
     border-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     border: 2px solid #ccc;
-    border-collapse: collapse; 
+    border-collapse: collapse;
+    font-family: 'Courier New', Courier, monospace; 
 }
 
 .table-wrapper {
@@ -154,9 +155,10 @@ h1 {
 .stockChoices button {
     display: flex;
     padding: 15px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     background-color: transparent;
+    font-family: 'Courier New', Courier, monospace;
     border: 2px solid #ccc; 
     color: white; 
     cursor: pointer;
@@ -230,7 +232,8 @@ h1 {
     border-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     border: 2px solid #ccc;
-    border-collapse: collapse; 
+    border-collapse: collapse;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .table-wrapper {
@@ -296,9 +299,10 @@ h1 {
 .annualEarningsChoices button {
     display: flex;
     padding: 15px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     background-color: transparent;
+    font-family: 'Courier New', Courier, monospace;
     border: 2px solid #ccc; 
     color: white; 
     cursor: pointer;
@@ -327,7 +331,8 @@ h1 {
     border-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     border: 2px solid #ccc;
-    border-collapse: collapse; 
+    border-collapse: collapse;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .table-wrapper {
@@ -381,21 +386,24 @@ h1 {
     position: absolute;
     color: white;
     top: 185px;
-    left: 400px;
+    left: 600px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .companyoverviewanalyst {
     position: absolute;
     color: white;
     top: 750px;
-    right: 370px;
+    right: 500px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .companyoverviewadvanced {
     position: absolute;
     color: white;
     top: 185px;
-    right: 360px;
+    right: 500px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 
@@ -405,6 +413,7 @@ h1 {
     padding-left: 20px;
     border-radius: 5px;
     width: 40%;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #company-overview-basic dl,
