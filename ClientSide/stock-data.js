@@ -73,6 +73,42 @@ function displayEarningsData(annualEarningsData) {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCompanyOverview();
+});
+
+async function initializeCompanyOverview() {
+    try {
+        // Fetch the company overview data first
+        const companyOverviewData = await fetchCompanyOverview();
+        
+        // Once we have the data, set up the menu listeners
+        if (companyOverviewData && companyOverviewData.length > 0) {
+            setupMenuListeners(companyOverviewData);
+            
+            // Show the first company by default (optional)
+            const firstCompany = companyOverviewData[0];
+            showCompanyOverview(companyOverviewData, firstCompany.symbol);
+        } else {
+            console.error('No company overview data found.');
+        }
+    } catch (error) {
+        console.error('Failed to initialize company overview:', error);
+    }
+}
+
+async function fetchCompanyOverview() {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/company-overview');
+        const data = await response.json();
+        console.log('Fetched data:', data);
+        return data;
+    } catch (error) {
+        console.error('Could not fetch company overview:', error);
+        throw error;
+    }
+}
+
 async function quarterlyEarningsAAPL() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-aapl');
@@ -177,10 +213,6 @@ async function quarterlyEarningsAMZN() {
         console.error('Could not fetch quarterly earnings:', error);
     }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    companyOverview();
-});
 
 async function fundsOverview() {
     try {
@@ -603,8 +635,6 @@ function displayNoDataMessage() {
     `;
 }
 
-
-//Lägg till display funktionerna igen
 fetchStockPrices();
 quarterlyEarningsAAPL();
 quarterlyEarningsGOOGL();
@@ -613,7 +643,6 @@ quarterlyEarningsTSLA();
 quarterlyEarningsAMZN();
 quarterlyEarningsNVDA();
 quarterlyEarningsIBM();
-displayCompanyOverview();
 
 
 

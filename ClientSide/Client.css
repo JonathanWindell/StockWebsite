@@ -25,7 +25,7 @@ h1 {
 
 .sidebar ul {
     list-style-type: none;
-    padding: 0;
+    padding: 10px;
 }
 
 .sidebar ul li {
@@ -76,70 +76,6 @@ h1 {
 .sidebar.open {
     left: 0; 
 }
-
-
-
-
-/* Navigation Bar */
-#menuSection {
-    position: relative;
-    top: 0;
-    left: 0;
-    background-color: #454545;
-    border-radius: 5px;
-    width: 100%;
-    height: 100px;
-    border: 2px solid #ccc; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-}
-
-/* Navigation Bar Buttons */
-#homepage, #stockprices, #annualearnings, #quarterlyearnings {
-    position: absolute;
-    top: 18px;
-    height: auto;
-    width: 45px;
-}
-
-.QuarterlyEarningsText, .AnnualEarningsText, .StockPricesText, .UserText, .HomepageText {
-    color: white;
-    position: absolute;
-    font-size: large;
-}
-
-.HomepageText { left: 35px; top: 55px; }
-.QuarterlyEarningsText { left: 410px; top: 55px; }
-.AnnualEarningsText { left: 265px; top: 55px; }
-.StockPricesText { left: 145px; top: 55px; }
-.UserText { right: 50px; top: 55px; }
-
-#homepage { left: 50px; }
-#stockprices { left: 170px; }
-#annualearnings { left: 300px; }
-#quarterlyearnings { left: 450px; }
-#user { right: 50px; }
-
-#user {
-    position: absolute;
-    top: 12px;
-    height: auto;
-    width: 65px;
-}
-
-#homepage, #stockprices, #annualearnings, #quarterlyearnings, #user {
-    transition: transform 0.3s ease, color 0.3s ease; 
-}
-
-#homepage:hover, 
-#stockprices:hover, 
-#annualearnings:hover, 
-#quarterlyearnings:hover, 
-#user:hover {
-    cursor: pointer;
-    transform: scale(1.2); 
-}
-
-
 
 /*Stock table body*/
 #stockTable {
@@ -257,8 +193,8 @@ h1 {
     position: relative;
     border-spacing: 20px; 
     border-collapse: separate; 
-    top: 80px;
-    left: 20%;
+    top: 100px;
+    left: 15%;
     font-size: large;
     width: 70%; 
     border-collapse: collapse;
@@ -286,11 +222,17 @@ h1 {
 }
 
 #AnnualEarningsMenu {
-    left: 250px;
+    left: 800px;
     position: absolute;
     display: flex;
-    top: 260px;
+    top: 130px;
     gap: 10px;
+}
+
+.annualEarningsChoices {
+    display: flex; 
+    flex-direction: row; 
+    gap: 10px; 
 }
 
 .annualEarningsChoices button {
@@ -305,8 +247,6 @@ h1 {
     border-radius: 10px;
     width: 125px;
     height: 50px;
-    margin-bottom: 10px;
-    margin-right: 20px;
     text-align: center;
     gap: 10px;
     transition: background-color 0.3s, color 0.3s;
@@ -440,12 +380,14 @@ h1 {
     color: white;
     position: absolute;
     left: 300px;
+    top: 170px;
 }
 
 .sectors {
     color: white;
     position: absolute;
     left: 750px;
+    top: 170px;
 }
 
 .holdings {
