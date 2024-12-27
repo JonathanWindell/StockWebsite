@@ -13,7 +13,7 @@ h1 {
 /*Sidebar navigation*/
 .sidebar {
     height: 100%;
-    width: 250px;
+    width: 200px;
     position: fixed;
     top: 0;
     left: -250px; 
