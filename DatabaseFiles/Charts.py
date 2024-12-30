@@ -15,7 +15,7 @@ def fundchart_horizontal():
     plt.xlabel("Weight")
     plt.ylabel("Sectors")
     plt.title("Fund Allocation by Sector")
-    plt.savefig("fundchart_horizontal.png", transparent = True)
+    plt.savefig("..Images/fundchart_horizontal.png", transparent = True)
     plt.tight_layout()
     plt.show()
 
