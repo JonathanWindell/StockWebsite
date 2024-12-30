@@ -653,6 +653,6 @@ h1 {
 /*Fund charts*/
 #fundsChart {
     position: absolute;
-    top: 100px;
+    top: 50px;
     right: 200px;
 }
