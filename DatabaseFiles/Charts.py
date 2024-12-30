@@ -1,7 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-
 
 def fundchart_horizontal():
     # Labels och vikter för diagrammet
@@ -35,3 +32,4 @@ def fundchart_horizontal():
 
 if __name__ == "__main__":
     fundchart_horizontal()
+
