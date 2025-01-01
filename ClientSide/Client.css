@@ -2,125 +2,65 @@ body {
     background-color: #28282b;
 }
 /*Animation*/
-* {
-    box-sizing: border-box;
-}
-
-body::before {
-    --line: hsl(0 0% 95% / 0.25);
-    content: "";
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    background: linear-gradient(90deg, var(--line) 1px, transparent 1px 10vmin) 0 -5vmin / 10vmin 10vmin,
-        linear-gradient(var(--line) 1px, transparent 1px 10vmin) 0 -5vmin / 10vmin 10vmin;
-    mask: linear-gradient(-15deg, transparent 30%, white);
-    top: 0;
-    z-index: -1;
-}
-
-/* Anpassningar för headerAnimation */
 #headerAnimation {
-    position: fixed; /* Fixerat så att det alltid är på samma plats på skärmen */
-    top: 20px; /* Avstånd från toppen */
-    right: 20px; /* Avstånd från höger */
-    transform: scale(0.7); /* Minska storleken på hela sektionen */
-    transform-origin: top right; /* Skala från övre högra hörnet */
-    z-index: 1000; /* Se till att det ligger ovanpå andra element */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    transform: scale(0.7);
+    transform-origin: top right;
+    z-index: 1000;
     text-align: center;
 }
 
-/* Stil för texten "Contact Me" */
+/* Stil för texten */
 #headerAnimation p {
     margin: 0;
-    font-size: 40px;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    color: hsl(0 0% 40%);
     text-align: center;
-    background: linear-gradient(hsl(0 0% 80%), hsl(0 0% 50%));
-    background-clip: text;
 }
 
-/* Stil för "code" sektionen */
+/* Stil för länklistan */
 .code {
-    font-size: 3rem;
     display: flex;
-    flex-wrap: nowrap;
-    color: hsl(0 0% 100%);
-    border-radius: 1rem;
-    background: hsl(0 0% 6%);
     justify-content: center;
-    box-shadow: 0 1px hsl(0 0% 100% / 0.25) inset;
-}
-
-.code:hover {
-    cursor: grab;
-}
-
-/* Stil för varje digit (nummer) */
-.digit {
-    display: flex;
-    height: 100%;
-    padding: 5.5rem 1rem;
-}
-
-.digit:focus-visible {
-    outline-color: hsl(0 0% 50% / 0.25);
-    outline-offset: 1rem;
-}
-
-/* Animeringar och transitioner */
-.digit span {
-    scale: calc(var(--active, 0) + 0.5);
-    filter: blur(calc((1 - var(--active, 0)) * 1rem));
-    transition: scale calc(((1 - var(--active, 0)) + 0.2) * 1s), filter calc(((1 - var(--active, 0)) + 0.2) * 1s);
-}
-
-ul {
+    gap: 1rem;
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.digit:first-of-type {
-    padding-left: 5rem;
-}
-.digit:last-of-type {
-    padding-right: 5rem;
-}
-
-/* Lerp-värden för transitioner */
-:root {
-    --lerp-0: 1; /* === sin(90deg) */
-    --lerp-1: calc(sin(50deg));
-    --lerp-2: calc(sin(45deg));
-    --lerp-3: calc(sin(35deg));
-    --lerp-4: calc(sin(25deg));
-    --lerp-5: calc(sin(15deg));
+/* Stil för varje länk */
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: hsl(0 0% 6%);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 1px hsl(0 0% 100% / 0.25) inset;
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
-/* Hover-effekter för digit-element */
-.digit:is(:hover, :focus-visible) {
-    --active: var(--lerp-0);
+.link:hover {
+    transform: scale(1.1);
 }
-.digit:is(:hover, :focus-visible) + .digit,
-.digit:has(+ .digit:is(:hover, :focus-visible)) {
-    --active: var(--lerp-1);
+
+/* Stil för bilderna */
+.link img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: blur(4px);
+    opacity: 0.6;
+    transition: filter 0.3s ease, opacity 0.3s ease;
 }
-.digit:is(:hover, :focus-visible) + .digit + .digit,
-.digit:has(+ .digit + .digit:is(:hover, :focus-visible)) {
-    --active: var(--lerp-2);
-}
-.digit:is(:hover, :focus-visible) + .digit + .digit + .digit,
-.digit:has(+ .digit + .digit + .digit:is(:hover, :focus-visible)) {
-    --active: var(--lerp-3);
-}
-.digit:is(:hover, :focus-visible) + .digit + .digit + .digit + .digit,
-.digit:has(+ .digit + .digit + .digit + .digit:is(:hover, :focus-visible)) {
-    --active: var(--lerp-4);
-}
-.digit:is(:hover, :focus-visible) + .digit + .digit + .digit + .digit + .digit,
-.digit:has(+ .digit + .digit + .digit + .digit + .digit:is(:hover, :focus-visible)) {
-    --active: var(--lerp-5);
+
+.link:hover img {
+    filter: blur(0);
+    opacity: 1;
 }
 
 /*Header*/
