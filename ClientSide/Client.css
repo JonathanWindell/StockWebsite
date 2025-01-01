@@ -33,11 +33,11 @@ body::before {
 /* Stil för texten "Contact Me" */
 #headerAnimation p {
     margin: 0;
-    font-size: 2.25rem;
-    color: hsl(0 0% 40%);
+    font-size: 40px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
     text-align: center;
     background: linear-gradient(hsl(0 0% 80%), hsl(0 0% 50%));
-    color: transparent;
     background-clip: text;
 }
 
