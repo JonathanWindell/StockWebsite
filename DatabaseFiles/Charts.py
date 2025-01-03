@@ -33,7 +33,7 @@ def fundchart_horizontal():
 
 if __name__ == "__main__":
     fundchart_horizontal()
-
+"""
 
 def fundchart_circle():
     # Data och etiketter
@@ -43,7 +43,7 @@ def fundchart_circle():
     data = [0.322, 0.117, 0.114, 0.099, 0.095, 0.082, 0.055, 0.031, 0.023, 0.018]
 
     # Skapa figur och subplot med rätt proportioner
-    fig, ax = plt.subplots(figsize=(11, 8), subplot_kw=dict(aspect="equal"))
+    fig, ax = plt.subplots(figsize=(18, 16), subplot_kw=dict(aspect="equal"))
 
     # Funktion för att visa procentsatser och absoluta värden
     def func(pct, allvals):
@@ -85,4 +85,3 @@ def fundchart_circle():
 if __name__ == "__main__":
     fundchart_circle()
     
-"""
