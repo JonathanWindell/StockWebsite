@@ -12,7 +12,7 @@ body {
     text-align: center;
 }
 
-/* Stil för texten */
+/* Style for the text */
 #headerAnimation p {
     margin: 0;
     font-size: 2rem;
@@ -20,6 +20,7 @@ body {
     text-align: center;
 }
 
+/*Contact me*/
 .ContactMe {
     position: absolute;
     right: 10px;
@@ -31,7 +32,7 @@ body {
     margin-right: 12px;
 }
 
-/* Stil för länklistan */
+/* Style for list */
 .code {
     display: flex;
     justify-content: center;
@@ -41,7 +42,7 @@ body {
     margin: 0;
 }
 
-/* Stil för varje länk */
+/* Style for every link */
 .link {
     display: flex;
     align-items: center;
@@ -59,7 +60,7 @@ body {
     transform: scale(1.1);
 }
 
-/* Stil för bilderna */
+/* Style for images */
 .link img {
     width: 40px;
     height: 40px;
@@ -83,7 +84,7 @@ h1 {
     top: 200px;
 }
 
-/*Sidebar navigation*/
+/* Sidebar container with slide-in and slide-out functionality */
 .sidebar {
     height: 100%;
     width: 175px;
@@ -96,16 +97,19 @@ h1 {
     padding-top: 20px;
 }
 
+/* List styling inside the sidebar */
 .sidebar ul {
     list-style-type: none;
     padding: 10px;
 }
 
+/* Sidebar list items */
 .sidebar ul li {
     padding: 8px 16px;
     text-align: left;
 }
 
+/* Links inside the sidebar */
 .sidebar ul li a {
     color: white;
     text-decoration: none;
@@ -117,18 +121,21 @@ h1 {
     padding-top: 30px;
 }
 
+/* Images in the sidebar */
 .sidebar ul li img {
     width: 100%;
     height: 100%;
     object-fit: contain; 
 }
 
+/* Hover effect for links */
 .sidebar ul li a:hover {
     border-radius: 10px;
     padding-left: 10px;
     transition: ease 0.2s; 
 }
 
+/* Button to toggle the sidebar */
 .toggle-btn {
     font-size: 30px;
     position: fixed;
@@ -140,17 +147,19 @@ h1 {
     cursor: pointer;
 }
 
+/* Main content area next to the sidebar */
 .content {
     margin-left: 20px;
     padding: 20px;
     top: 20px;
 }
 
+/* Sidebar open state */
 .sidebar.open {
     left: 0; 
 }
 
-/*Stock table body*/
+/*Stock table body generic styling*/
 #stockTable {
     width: 80%;
     margin-left: 10%;
@@ -164,6 +173,7 @@ h1 {
     font-family: 'Courier New', Courier, monospace; 
 }
 
+/*Table wrapper styling*/
 .table-wrapper {
     max-height: 1100px;
     overflow-y: auto;
@@ -171,6 +181,7 @@ h1 {
     margin-top: 140px;
 }
 
+/*Table header styling*/
 #stockTable thead th {
     position: sticky;
     top: 0;
@@ -181,36 +192,42 @@ h1 {
     color: white;
 }
 
+/*Table body styling*/
 #stockTable td {
     padding: 20px;
     text-align: left;
     color: white;
 }
 
+/*Table row hover effect*/
 #stockTable tbody tr:hover {
     background-color: #525252;
 }
 
+/*Table scrollbar styling*/
 .table-wrapper::-webkit-scrollbar {
     width: 10px;
 }
 
+/*Table scrollbar track styling*/
 .table-wrapper::-webkit-scrollbar-track {
     background: #383838;
     border-radius: 5px;
 }
 
+/*Table scrollbar thumb styling*/
 .table-wrapper::-webkit-scrollbar-thumb {
     background: #666;
     border-radius: 5px;
 }
 
+/*Table scrollbar thumb hover styling*/
 .table-wrapper::-webkit-scrollbar-thumb:hover {
     background: #777;
     
 }
 
-/*Stock menu*/
+/*Stock menu generic styling*/
 #StockMenu {
     left: 800px;
     position: absolute;
@@ -219,12 +236,14 @@ h1 {
     gap: 10px; 
 }
 
+/*Stock choices styling*/
 .stockChoices {
     display: flex; 
     flex-direction: row; 
     gap: 10px; 
 }
 
+/*Stock buttons styling*/
 .stockChoices button {
     display: flex;
     padding: 15px;
@@ -246,6 +265,7 @@ h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); 
 }
 
+/*Button images*/
 #btn-stock-AAPL img {
     width: 20px;
     height: auto;
@@ -288,7 +308,7 @@ h1 {
     object-fit: contain;
 }
 
-
+/*Button hover effect*/
 .stockChoices button:hover {
     background-color: rgba(255, 255, 255, 0.1); 
     color: #ccc;
@@ -309,6 +329,7 @@ h1 {
     font-family: 'Courier New', Courier, monospace;
 }
 
+/*Table wrapper styling*/
 .table-wrapper {
     max-height: 1100px;
     overflow-y: auto;
@@ -316,6 +337,7 @@ h1 {
     margin-top: 80px;
 }
 
+/*Table header styling*/
 #annualEarningsTable thead th {
     position: sticky;
     top: 0;
@@ -326,35 +348,42 @@ h1 {
     color: white;
 }
 
+/*Table body styling*/
 #annualEarningsTable td {
     padding: 20px;
     text-align: left;
     color: white;
 }
 
+/*Table row hover effect*/
 #annualEarningsTable tbody tr:hover {
     background-color: #525252;
 }
 
+/*Table scrollbar styling*/
 .table-wrapper::-webkit-scrollbar {
     width: 10px;
 }
 
+/*Table scrollbar track styling*/
 .table-wrapper::-webkit-scrollbar-track {
     background: #383838;
     border-radius: 5px;
 }
 
+/*Table scrollbar thumb styling*/
 .table-wrapper::-webkit-scrollbar-thumb {
     background: #666;
     border-radius: 5px;
 }
 
+/*Table scrollbar thumb hover styling*/
 .table-wrapper::-webkit-scrollbar-thumb:hover {
     background: #777;
     
 }
 
+/*Annual earnings menu styling*/
 #AnnualEarningsMenu {
     left: 800px;
     position: absolute;
@@ -363,12 +392,14 @@ h1 {
     gap: 10px;
 }
 
+/*Annual earnings choices styling*/
 .annualEarningsChoices {
     display: flex; 
     flex-direction: row; 
     gap: 10px; 
 }
 
+/*Annual earnings buttons styling*/
 .annualEarningsChoices button {
     display: flex;
     padding: 15px;
@@ -388,6 +419,7 @@ h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);  
 }
 
+/*Annual earnings buttons hover effect*/
 .annualEarningsChoices button:hover {
     background-color: rgba(255, 255, 255, 0.1); 
     color: #ccc;
@@ -408,6 +440,7 @@ h1 {
     font-family: 'Courier New', Courier, monospace;
 }
 
+/*Table wrapper styling*/
 .table-wrapper {
     max-height: 1100px;
     overflow-y: auto;
@@ -415,6 +448,7 @@ h1 {
     margin-top: 80px;
 }
 
+/*Table header styling*/
 #quarterlyEarningsTable thead th {
     position: sticky;
     top: 0;
@@ -425,36 +459,42 @@ h1 {
     color: white;
 }
 
+/*Table body styling*/
 #quarterlyEarningsTable td {
     padding: 20px;
     text-align: left;
     color: white;
 }
 
+/*Table row hover effect*/
 #quarterlyEarningsTable tbody tr:hover {
     background-color: #525252;
 }
 
+/*Table scrollbar styling*/
 .table-wrapper::-webkit-scrollbar {
     width: 10px;
 }
 
+/*Table scrollbar track styling*/
 .table-wrapper::-webkit-scrollbar-track {
     background: #383838;
     border-radius: 5px;
 }
 
+/*Table scrollbar thumb styling*/
 .table-wrapper::-webkit-scrollbar-thumb {
     background: #666;
     border-radius: 5px;
 }
 
+/*Table scrollbar thumb hover styling*/
 .table-wrapper::-webkit-scrollbar-thumb:hover {
     background: #777;
     
 }
 
-/*Company overview*/
+/*Company overview basic*/
 .companyoverviewbasic {
     position: absolute;
     color: white;
@@ -463,6 +503,7 @@ h1 {
     font-family: 'Courier New', Courier, monospace;
 }
 
+/*Company overview analyst*/
 .companyoverviewanalyst {
     position: absolute;
     color: white;
@@ -471,6 +512,7 @@ h1 {
     font-family: 'Courier New', Courier, monospace;
 }
 
+/*Company overview advanced*/
 .companyoverviewadvanced {
     position: absolute;
     color: white;
@@ -479,7 +521,7 @@ h1 {
     font-family: 'Courier New', Courier, monospace;
 }
 
-
+/*Company overview*/
 #company-overview-basic, #company-overview-analyst, #company-overview-advanced {
     color: white;
     background-color:#454545;
@@ -523,6 +565,7 @@ h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); 
 }
 
+/*Company overview positions*/
 #company-overview-basic {
     position: absolute;
     left: 200px;
@@ -549,6 +592,7 @@ h1 {
     top: 170px;
 }
 
+/*Sectors overview*/
 .sectors {
     color: white;
     position: absolute;
@@ -556,6 +600,7 @@ h1 {
     top: 170px;
 }
 
+/*Holdings overview*/
 .holdings {
     color: white;
     position: absolute;
@@ -563,11 +608,13 @@ h1 {
     left: 450px;
 }
 
+/*Funds table body*/
 #fundsTableBody, #sectorTableBody, #holdingTableBody dl {
     display: grid;
     grid-gap: 4px 16px;
     grid-template-columns: max-content;
 }
+
 
 #fundsTableBody dt, #sectorTableBody dt, #holdingTableBody dt {
     font-weight: bold;
@@ -602,6 +649,7 @@ h1 {
     border: 2px solid #ccc;
 }
 
+/*Sectors table body*/
 #sectorTableBody {
     position: absolute;
     left: 700px;
@@ -624,6 +672,7 @@ h1 {
     max-height: 605px;
 }
 
+/*Holdings table body*/
 #holdingTableBody {
     position: absolute;
     left: 250px;
@@ -670,17 +719,20 @@ h1 {
     box-sizing: border-box;
 }
 
+/*Donut chart*/
 .donut-container {
     max-width: 40%;             
     height: auto;               
     transition: transform 0.3s ease-in-out; 
 }
 
+/*Donut chart image*/
 .donut-container img {
     width: 100%;               
     height: auto;              
 }
 
+/*Media queries*/
 @media (max-width: 768px) {
     #fundsChart {
         justify-content: center; 

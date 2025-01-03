@@ -1,4 +1,3 @@
-
 //Sidebar navigation
 const toggleBtn = document.getElementById('toggle-btn');
 const sidebar = document.getElementById('sidebar');
@@ -8,6 +7,7 @@ toggleBtn.addEventListener('click', () => {
 });
 
 //Functions for format
+//Funtion for numbers
 function formatNumber(number) {
     return new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -16,54 +16,65 @@ function formatNumber(number) {
         maximumFractionDigits: 0
     }).format(number);
 }
-
+//Functions for percentage
 function formatPercentage(number) {
     return number ? number.toFixed(2) + '%' : 'N/A';
 }
-
+//Function for date
 function formatDate(dateString) {
     if (!dateString) return 'N/A';
     return new Date(dateString).toLocaleDateString();
 }
 
 
-//Fetch stock prices
+// Fetch stock prices and annual earnings data from the server
 async function fetchStockPrices() {
     try {
+        // Fetch stock price data for specific tickers
         const response = await fetch('http://127.0.0.1:5000/stock-data?tickers=AAPL,GOOGL,MSFT,NVDA,TSLA,AMZN');
         const stockPrices = await response.json();
-        console.log('Fetched data:', stockPrices); 
+        console.log('Fetched data:', stockPrices);
+        
+        // If stock data is available, display it
         if (stockPrices && stockPrices.length > 0) {
-            displayStockPrices(stockPrices);
-            showStockData(stockPrices);
+            displayStockPrices(stockPrices); // Update UI with stock prices
+            showStockData(stockPrices);      // Show stock data details
         } else {
             console.error('No stock data found.');
         }
     } catch (error) {
+        // Log an error if fetching stock prices fails
         console.error('Could not fetch stock data:', error);
     }
+
+    // Fetch annual earnings data
     (async function fetchAnnualEarnings() {
         try {
+            // Fetch earnings data for specific tickers
             const response = await fetch('http://127.0.0.1:5000/annual-earnings-data?tickers=AAPL,MSFT,GOOGL,AMZN,NVDA,IBM,TSLA');
             const annualEarningsData = await response.json();
             console.log('Fetched data:', annualEarningsData);
+            
+            // If earnings data is available, display it
             if (annualEarningsData && annualEarningsData.length > 0) {
-                displayEarningsData(annualEarningsData);
-                showEarningsData(annualEarningsData);
+                displayEarningsData(annualEarningsData); // Update UI with earnings data
+                showEarningsData(annualEarningsData);    // Show earnings data details
             } else {
                 console.error('No annual earnings data found.');
             }
         } catch (error) {
+            // Log an error if fetching annual earnings fails
             console.error('Could not fetch annual earnings:', error);
         }
     })();
 }
 
+//Function for displaying stock prices
 function displayStockPrices(stockPrices) {
     const stockTableBody = document.getElementById('stockTableBody');
     stockTableBody.innerHTML = ''; 
 
-    stockPrices.forEach(stock => {
+    stockPrices.forEach(stock => { 
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${stock.ticker}</td>
@@ -78,6 +89,7 @@ function displayStockPrices(stockPrices) {
     });
 }
 
+//Function for displaying earnings
 function displayEarningsData(annualEarningsData) {
     const earningsTableBody = document.getElementById('earningsTableBody');
     earningsTableBody.innerHTML = '';
@@ -117,6 +129,7 @@ async function initializeCompanyOverview() {
     }
 }
 
+//Function for company overview
 async function fetchCompanyOverview() {
     try {
         const response = await fetch('http://127.0.0.1:5000/company-overview');
@@ -129,12 +142,14 @@ async function fetchCompanyOverview() {
     }
 }
 
+//Function for quarterly earnings AAPL
 async function quarterlyEarningsAAPL() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-aapl');
         const quarterlyEarningsAAPL = await response.json();
         console.log('Fetched data:', quarterlyEarningsAAPL);
         if (quarterlyEarningsAAPL && quarterlyEarningsAAPL.length > 0) {
+            //If data found then display quarterly earnings AAPL
             displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL);
         } else {
             console.error('No quarterly earnings data found.');
@@ -144,12 +159,14 @@ async function quarterlyEarningsAAPL() {
     }
 }
 
+//Function for quarterly earnings GOOGL
 async function quarterlyEarningsGOOGL() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-googl');
         const quarterlyEarningsGOOGL = await response.json();
         console.log('Fetched data:', quarterlyEarningsGOOGL);
         if (quarterlyEarningsGOOGL && quarterlyEarningsGOOGL.length > 0) {
+            //If data found then display quarterly earnings GOOGL
             displayQuarterlyEarningsGOOGL(quarterlyEarningsGOOGL);
         } else {
             console.error('No quarterly earnings data found.');
@@ -159,12 +176,14 @@ async function quarterlyEarningsGOOGL() {
     }
 }
 
+//Function for quarterly earnings MSFT
 async function quarterlyEarningsMSFT() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-msft');
         const quarterlyEarningsMSFT = await response.json();
         console.log('Fetched data:', quarterlyEarningsMSFT);
         if (quarterlyEarningsMSFT && quarterlyEarningsMSFT.length > 0) {
+            //If data found then display quarterly earnings MSFT
             displayQuarterlyEarningsMSFT(quarterlyEarningsMSFT);
         } else {
             console.error('No quarterly earnings data found.');
@@ -174,12 +193,14 @@ async function quarterlyEarningsMSFT() {
     } 
 }
 
+//Function for quarterly earnings NVDA
 async function quarterlyEarningsNVDA() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-nvda');
         const quarterlyEarningsNVDA = await response.json();
         console.log('Fetched data:', quarterlyEarningsNVDA);
         if (quarterlyEarningsNVDA && quarterlyEarningsNVDA.length > 0) {
+            //If data found then display quarterly earnings NVDA
             displayQuarterlyEarningsNVDA(quarterlyEarningsNVDA);
         } else {
             console.error('No quarterly earnings data found.');
@@ -189,12 +210,14 @@ async function quarterlyEarningsNVDA() {
     }
 }
 
+//Function for quarterly earnings TSLA
 async function quarterlyEarningsTSLA() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-tsla');
         const quarterlyEarningsTSLA = await response.json();
         console.log('Fetched data:', quarterlyEarningsTSLA);
         if (quarterlyEarningsTSLA && quarterlyEarningsTSLA.length > 0) {
+            //If data found then display quarterly earnings TSLA
             displayQuarterlyEarningsTSLA(quarterlyEarningsTSLA);
         } else {
             console.error('No quarterly earnings data found.');
@@ -204,12 +227,14 @@ async function quarterlyEarningsTSLA() {
     }
 }
 
+//Function for quarterly earnings IBM
 async function quarterlyEarningsIBM() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-ibm');
         const quarterlyEarningsIBM = await response.json();
         console.log('Fetched data:', quarterlyEarningsIBM);
         if (quarterlyEarningsIBM && quarterlyEarningsIBM.length > 0) {
+            //If data found then display quarterly earnings IBM
             displayQuarterlyEarningsIBM(quarterlyEarningsIBM);
         } else {
             console.error('No quarterly earnings data found.');
@@ -219,12 +244,14 @@ async function quarterlyEarningsIBM() {
     }
 }
 
+//Function for quarterly earnings AMZN
 async function quarterlyEarningsAMZN() {
     try {
         const response = await fetch('http://127.0.0.1:5000/quarterly-earnings-amzn');
         const quarterlyEarningsAMZN = await response.json();
         console.log('Fetched data:', quarterlyEarningsAMZN);
         if (quarterlyEarningsAMZN && quarterlyEarningsAMZN.length > 0) {
+            //If data found then display quarterly earnings AMZN
             displayQuarterlyEarningsAMZN(quarterlyEarningsAMZN);
         } else {
             console.error('No quarterly earnings data found.');
@@ -234,10 +261,12 @@ async function quarterlyEarningsAMZN() {
     }
 }
 
+//Function for funds overview
 async function fundsOverview() {
     try {
         const response = await fetch('http://127.0.0.1:5000/funds');
         
+        // Check if the request was successful
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -246,39 +275,38 @@ async function fundsOverview() {
         console.log('Fetched data:', fundsOverview);
         
         if (fundsOverview && fundsOverview.length > 0) {
-            displayFundsOverview(fundsOverview);  // Använder vår display-funktion
+            displayFundsOverview(fundsOverview);  //Using display-function
         } else {
             console.error('No funds overview data found.');
-            // Uppdatera alla containers för att visa felmeddelandet
-            document.getElementById('fundsTableBody').innerHTML = '<p>No information found.</p>';
+            // Uppdate container to show error message.
             document.getElementById('sectorTableBody').innerHTML = '<p>No information found.</p>';
-            document.getElementById('holdingTableBody').innerHTML = '<p>No information found.</p>';
         }
     } catch (error) {
         console.error('Could not fetch funds overview:', error);
-        // Uppdatera alla containers för att visa felmeddelandet
+        // Uppdate container to show error message.
         const errorMessage = `<p>Just some small technical issues. Hold on!: ${error.message}</p>`;
-        document.getElementById('fundsTableBody').innerHTML = errorMessage;
         document.getElementById('sectorTableBody').innerHTML = errorMessage;
-        document.getElementById('holdingTableBody').innerHTML = errorMessage;
     }
 }
-
+// Call the fundsOverview function when the page loads
 document.addEventListener('DOMContentLoaded', fundsOverview);
 
+//Function for showing stock data
 function showStockData(stockPrices) {
     const buttons = document.querySelectorAll("#StockMenu button");
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             const ticker = button.dataset.ticker; 
-            console.log('Vald ticker:', ticker); 
+            console.log('Selected ticker:', ticker); 
             const stockTableBody = document.getElementById('stockTableBody');
             stockTableBody.innerHTML = ''; 
 
+            //Filter ticker
             const filteredStock = stockPrices.filter(stock => stock.ticker === ticker);
-            console.log('Filtrerad data:', filteredStock); 
+            console.log('Filtered data:', filteredStock); 
 
+            //If data found then display
             if (filteredStock.length > 0) {
                 filteredStock.forEach(stock => { 
                     const row = document.createElement('tr');
@@ -295,26 +323,29 @@ function showStockData(stockPrices) {
                 });
             } else {
                 const row = document.createElement('tr');
-                row.innerHTML = `<td colspan="7">Ingen data hittades för ${ticker}</td>`;
+                row.innerHTML = `<td colspan="7">No data found for ${ticker}</td>`;
                 stockTableBody.appendChild(row);
             }
         });
     });
 }
 
+//Function for showing earnings
 function showEarningsData(annualEarningsData) {
     const buttons = document.querySelectorAll("#AnnualEarningsMenu button");
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             const ticker = button.dataset.ticker;
-            console.log('Vald ticker:', ticker);
+            console.log('Selected ticker:', ticker);
             const earningsTableBody = document.getElementById('earningsTableBody');
             earningsTableBody.innerHTML = '';
 
+            //Filter ticker
             const filteredEarnings = annualEarningsData.filter(earnings => earnings.ticker === ticker); 
             console.log('Filtered data:', filteredEarnings);
 
+            //If data found then display
             if (filteredEarnings.length > 0) {
                 filteredEarnings.forEach(earnings => { 
                     const row = document.createElement('tr');
@@ -327,13 +358,14 @@ function showEarningsData(annualEarningsData) {
                 });
             } else {
                 const row = document.createElement('tr');
-                row.innerHTML = `<td colspan="3">Ingen data hittades för ${ticker}</td>`;
+                row.innerHTML = `<td colspan="3">No data found for ${ticker}</td>`;
                 earningsTableBody.appendChild(row);
             }
         });
     });
 }
 
+//Function for showing funds
 function displayFundsOverview(fundsOverview) {
     const fundsTableBody = document.getElementById('fundsTableBody');
     const sectorTableBody = document.getElementById('sectorTableBody');
@@ -410,10 +442,12 @@ function displayFundsOverview(fundsOverview) {
     holdingTableBody.innerHTML = holdingContent;
 }
 
+//Function for showing quarterly earnings AAPL
 function displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableAAPL');
     quarterlyEarningsTableBody.innerHTML = ''; 
 
+    // Loop through each earnings record and create a new table row
     quarterlyEarningsAAPL.forEach(earnings => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -425,14 +459,17 @@ function displayQuarterlyEarningsDataAAPL(quarterlyEarningsAAPL) {
             <td>${earnings.surprise_percentage}</td>
             <td>${earnings.report_time}</td>
         `;
+        // Add the row to the table
         quarterlyEarningsTableBody.appendChild(row);
     });
 }
 
+//Function for showing quarterly earnings GOOGL
 function displayQuarterlyEarningsGOOGL(quarterlyEarningsGOOGL) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableGOOGL');
     quarterlyEarningsTableBody.innerHTML = ''; 
 
+    // Loop through each earnings record and create a new table row
     quarterlyEarningsGOOGL.forEach(earnings => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -444,13 +481,17 @@ function displayQuarterlyEarningsGOOGL(quarterlyEarningsGOOGL) {
             <td>${earnings.surprise_percentage}</td>
             <td>${earnings.report_time}</td>
         `;
+        // Add the row to the table
         quarterlyEarningsTableBody.appendChild(row);
     });
 }
+
+//Function for showing quarterly earnings MSFT
 function displayQuarterlyEarningsMSFT(quarterlyEarningsMSFT) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableMSFT');
     quarterlyEarningsTableBody.innerHTML = '';
 
+    // Loop through each earnings record and create a new table row
     quarterlyEarningsMSFT.forEach(earnings => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -462,14 +503,17 @@ function displayQuarterlyEarningsMSFT(quarterlyEarningsMSFT) {
             <td>${earnings.surprise_percentage}</td>
             <td>${earnings.report_time}</td>
         `;
+        // Add the row to the table
         quarterlyEarningsTableBody.appendChild(row);
     });
 }
 
+//Function for showing quarterly earnings TSLA
 function displayQuarterlyEarningsTSLA(quarterlyEarningsTSLA) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableTSLA');
     quarterlyEarningsTableBody.innerHTML = '';
 
+    // Loop through each earnings record and create a new table row
     quarterlyEarningsTSLA.forEach(earnings => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -481,14 +525,17 @@ function displayQuarterlyEarningsTSLA(quarterlyEarningsTSLA) {
             <td>${earnings.surprise_percentage}</td>
             <td>${earnings.report_time}</td>
         `;
+        // Add the row to the table
         quarterlyEarningsTableBody.appendChild(row);
     });
 }
 
+//Function for showing quarterly earnings AMZN
 function displayQuarterlyEarningsAMZN(quarterlyEarningsAMZN) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableAMZN');
     quarterlyEarningsTableBody.innerHTML = '';
 
+    // Loop through each earnings record and create a new table row
     quarterlyEarningsAMZN.forEach(earnings => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -500,14 +547,17 @@ function displayQuarterlyEarningsAMZN(quarterlyEarningsAMZN) {
             <td>${earnings.surprise_percentage}</td>
             <td>${earnings.report_time}</td>
         `;
+        // Add the row to the table
         quarterlyEarningsTableBody.appendChild(row);
     });
 }
 
+//Function for showing quarterly earnings NVDA
 function displayQuarterlyEarningsNVDA(quarterlyEarningsNVDA) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableNVDA');
     quarterlyEarningsTableBody.innerHTML = '';
 
+    // Loop through each earnings record and create a new table row
     quarterlyEarningsNVDA.forEach(earnings => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -519,14 +569,17 @@ function displayQuarterlyEarningsNVDA(quarterlyEarningsNVDA) {
             <td>${earnings.surprise_percentage}</td>
             <td>${earnings.report_time}</td>
         `;
+        // Add the row to the table
         quarterlyEarningsTableBody.appendChild(row);
     });
 }
 
+//Function for showing quarterly earnings IBM
 function displayQuarterlyEarningsIBM(quarterlyEarningsIBM) {
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTableIBM');
     quarterlyEarningsTableBody.innerHTML = '';
 
+    // Loop through each earnings record and create a new table row
     quarterlyEarningsIBM.forEach(earnings => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -538,10 +591,12 @@ function displayQuarterlyEarningsIBM(quarterlyEarningsIBM) {
             <td>${formatPercentage(earnings.surprise_percentage)}</td> 
             <td>${earnings.report_time}</td>
         `;
+        // Add the row to the table
         quarterlyEarningsTableBody.appendChild(row);
     });
 }
 
+//Function for setting up menu listeners for company overview
 function setupMenuListeners(companyOverview) {
     const buttons = document.querySelectorAll("#AnnualEarningsMenu button");
     
@@ -554,7 +609,9 @@ function setupMenuListeners(companyOverview) {
     });
 }
 
+//Function for showing company overview
 function showCompanyOverview(companyOverview, ticker) {
+    // Filter the company overview based on the selected ticker
     const filteredCompany = companyOverview.filter(company => company.symbol === ticker);
     console.log('Filtered data:', filteredCompany);
 
@@ -622,6 +679,7 @@ function showCompanyOverview(companyOverview, ticker) {
             </dl>
         `;
     } else {
+        // Display no data message
         const noDataMessage = `<p>No data available for ${ticker}</p>`;
         basicSection.innerHTML = noDataMessage;
         analystSection.innerHTML = noDataMessage;
@@ -629,6 +687,7 @@ function showCompanyOverview(companyOverview, ticker) {
     }
 }
 
+// Function for displaying no data message
 function displayNoDataMessage() {
 
     const quarterlyEarningsTableBody = document.getElementById('quarterlyEarningsTable');
@@ -639,6 +698,7 @@ function displayNoDataMessage() {
     `;
 }
 
+// Fetch all data
 fetchStockPrices();
 quarterlyEarningsAAPL();
 quarterlyEarningsGOOGL();
