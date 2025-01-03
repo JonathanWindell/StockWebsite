@@ -35,22 +35,53 @@ if __name__ == "__main__":
     fundchart_horizontal()
 """
 
-def fundchart_Donut():
-    Labels = ["0.32% Info technology",
-              "0.11% Consumer Discretionary",
-              "0.11% Financials",
-              "0.09% Healthcare",
-              "0.09% Communication Services",
-              "0.08% Industrials",
-              "0.05% Consumer Staples",
-              "0.03% Energy",
-              "0.02% Utilities",
-              "0.01% Materials"]
+def fundchart_circle():
+    # Data och etiketter
+    Labels = ["Info Technology", "Consumer Discretionary", "Financials", 
+              "Healthcare", "Communication Services", "Industrials", 
+              "Consumer Staples", "Energy", "Utilities", "Materials"]
     data = [0.322, 0.117, 0.114, 0.099, 0.095, 0.082, 0.055, 0.031, 0.023, 0.018]
 
-    wedges, texts = ax.pie(data, wedgeprops=dict(width=0.5), startangle=-40)
+    # Skapa figur och subplot med rätt proportioner
+    fig, ax = plt.subplots(figsize=(11, 8), subplot_kw=dict(aspect="equal"))
 
-    bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
-    kw = dict(arrowprops=dict(arrowstyle="-"), bbox = bbox_props, zorder = 0, va = "center")
-            
+    # Funktion för att visa procentsatser och absoluta värden
+    def func(pct, allvals):
+        absolute = int(np.round(pct / 100.0 * np.sum(allvals) * 100))  # Skala upp till hela procent
+        return f"{pct:.1f}%\n({absolute:d}%)"
+
+    # Pie-chart med automatiska procentsatser
+    wedges, texts, autotexts = ax.pie(
+        data,
+        autopct=lambda pct: func(pct, data),
+        textprops=dict(color="w"),
+        startangle=-40,
+        wedgeprops=dict(width=0.4)  # Gör det till en "donut"
+    )
+
+    # Flytta procentsatserna längre ut
+    for autotext in autotexts:
+        autotext.set_position((autotext.get_position()[0] * 1.3, 
+                               autotext.get_position()[1] * 1.3))
+
+    # Lägg till en legend
+    ax.legend(wedges, Labels,
+              title="Sectors",
+              loc="center left",
+              bbox_to_anchor=(0.9, 0, 1.8, 1))
+
+    # Anpassa autotextstorlek och stil
+    plt.setp(autotexts, size=6, weight="bold")
+
+    # Lägg till titel
+    ax.set_title("Fund Allocation by Sector", fontsize=16, fontweight='bold', color='white', fontname = "monospace")
+
+    # Visa diagrammet
+    plt.savefig("../Images/fundchart_circle.png", transparent=True)
+    plt.show()
+
+
+# Kör funktionen
+if __name__ == "__main__":
+    fundchart_circle()
     
