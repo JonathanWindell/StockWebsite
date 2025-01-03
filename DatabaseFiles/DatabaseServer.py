@@ -20,20 +20,26 @@ def connect_to_db():
 @app.route('/stock-data', methods=['GET'])
 def get_stock_data():
     tickers = request.args.get('tickers')
+    #If tickers in None return error
     if tickers is None:
         return jsonify({"error": "Missing 'tickers' parameter"}), 400
     
+    #Split tickers
     tickers = tickers.split(',')
+    #Database connection
     conn = connect_to_db()
     cursor = conn.cursor()
     
+    #Get data from database
     cursor.execute(
         "SELECT open_price, high_price, low_price, close_price, volume, latest_date, ticker FROM public.stock_prices WHERE ticker = ANY(%s)", 
         (tickers,)
     )
+    #Fetch and close connection
     data = cursor.fetchall()
     conn.close()
     
+    #Create dictionary to structure data
     stock_prices = [
         {
             "open_price": float(row[0]), 
@@ -46,48 +52,22 @@ def get_stock_data():
         }
         for row in data
     ]
- 
+    #Return json
     return jsonify(stock_prices)
-
-#News Data
-@app.route('/news-data', methods=['GET'])
-def get_news_data():
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    
-    cursor.execute(
-        "SELECT title, url, time_published, summary, banner_image, source, category_within_source, source_domain, overall_sentiment_score, overall_sentiment_label FROM public.stock_news"
-    )
-    data = cursor.fetchall()
-    conn.close()
-
-    news_data = [
-        {
-            "title": str(row[0]),
-            "url": str(row[1]),
-            "time_published": str(row[2]),
-            "summary": str(row[3]),
-            "banner_image": str(row[4]),
-            "source": str(row[5]),
-            "category_within_source": str(row[6]),
-            "source_domain": str(row[7]),
-            "overall_sentiment_score": float(row[8]),
-            "overall_sentiment_label": str(row[9])
-        }
-        for row in data
-    ]
-
-    return jsonify(news_data)
 
 #Annual earnings data
 @app.route('/annual-earnings-data', methods=['GET'])
 def get_annual_earnings_data():
+    #Connect to database
     conn = connect_to_db()
     cursor = conn.cursor()
-    
+
+    #Get data from database
     cursor.execute(
         "SELECT ticker, fiscal_date_ending, reported_eps FROM public.annual_earnings"
     )
+
+    #Fetch and close connection
     data = cursor.fetchall()
     conn.close()
 
@@ -99,18 +79,22 @@ def get_annual_earnings_data():
         }
         for row in data
     ]
-
+    #Return json
     return jsonify(annual_earnings_data)
 
-#Quarterly earnings data
+#Quarterly earnings data aapl
 @app.route('/quarterly-earnings-aapl', methods=['GET'])
 def get_quarterly_earnings_aapl():
+    #Database connection
     conn = connect_to_db()
     cursor = conn.cursor()
-    
+
+    #Get data from database
     cursor.execute(
         "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time FROM public.quarterly_earnings_aapl"
     )
+
+    #Fetch and close connection
     data = cursor.fetchall()
     conn.close()
 
@@ -126,18 +110,22 @@ def get_quarterly_earnings_aapl():
         }
         for row in data
     ]
-
+    #Return json
     return jsonify(quarterly_earnings_aapl)
 
-
+#Quarterly earnings data amzn
 @app.route('/quarterly-earnings-amzn', methods=['GET'])
 def get_quarterly_earnings_amzn():
+    #Database connection
     conn = connect_to_db()
     cursor = conn.cursor()
 
+    #Get data from database
     cursor.execute(
         "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time FROM public.quarterly_earnings_amzn"
     )
+
+    #Fetch and close connection
     data = cursor.fetchall()
     conn.close()
 
@@ -153,17 +141,22 @@ def get_quarterly_earnings_amzn():
         }
         for row in data
     ]
-
+    #Return json
     return jsonify(quarterly_earnings_amzn)
 
+#Quarterly earnings data googl
 @app.route('/quarterly-earnings-googl', methods=['GET'])
 def get_quarterly_earnings_googl():
+    #Database connection
     conn = connect_to_db()
     cursor = conn.cursor()
 
+    #Get data from database
     cursor.execute(
         "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time FROM public.quarterly_earnings_googl"
     )
+
+    #Fetch and close connection
     data = cursor.fetchall()
     conn.close()
 
@@ -179,17 +172,22 @@ def get_quarterly_earnings_googl():
         }
         for row in data
     ]
-
+    #Return json
     return jsonify(quarterly_earnings_googl)
 
+#Quarterly earnings data msft
 @app.route('/quarterly-earnings-msft', methods=['GET'])
 def get_quarterly_earnings_msft():
+    #Database connection
     conn = connect_to_db()
     cursor = conn.cursor()
 
+    #Get data from database
     cursor.execute(
         "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time FROM public.quarterly_earnings_msft"
     )
+
+    #Fetch and close connection
     data = cursor.fetchall()
     conn.close()
 
@@ -205,17 +203,22 @@ def get_quarterly_earnings_msft():
         }
         for row in data
     ]
-
+    #Return json
     return jsonify(quarterly_earnings_msft)
 
+#Quarterly earnings data ibm
 @app.route('/quarterly-earnings-ibm', methods=['GET'])
 def get_quarterly_earnings_ibm():
+    #Database connection
     conn = connect_to_db()
     cursor = conn.cursor()
 
+    #Get data from database
     cursor.execute(
         "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time FROM public.quarterly_earnings_ibm"
     )
+
+    #Fetch and close connection
     data = cursor.fetchall()
     conn.close()
 
@@ -231,17 +234,22 @@ def get_quarterly_earnings_ibm():
         }
         for row in data
     ]
-
+    #Return json
     return jsonify(quarterly_earnings_ibm)
 
+#Quarterly earnings data nvda
 @app.route('/quarterly-earnings-nvda', methods=['GET'])
 def get_quarterly_earnings_nvda():
+    #Database connection
     conn = connect_to_db()
     cursor = conn.cursor()
 
+    #Get data from database
     cursor.execute(
         "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time FROM public.quarterly_earnings_nvda"
     )
+
+    #Fetch and close connection
     data = cursor.fetchall()
     conn.close()
 
@@ -257,17 +265,22 @@ def get_quarterly_earnings_nvda():
         }
         for row in data
     ]
-
+    #Return json
     return jsonify(quarterly_earnings_nvda)
 
+#Quarterly earnings data tsla
 @app.route('/quarterly-earnings-tsla', methods=['GET'])
 def get_quarterly_earnings_tsla():
+    #Database connection
     conn = connect_to_db()
     cursor = conn.cursor()
 
+    #Get data from database
     cursor.execute(
         "SELECT fiscal_date_ending, reported_date, reported_eps, estimated_eps, surprise, surprise_percentage, report_time FROM public.quarterly_earnings_tsla"
     )
+
+    #Fetch and close connection
     data = cursor.fetchall()
     conn.close()
 
@@ -283,14 +296,17 @@ def get_quarterly_earnings_tsla():
         }
         for row in data
     ]
-
+    #Return json
     return jsonify(quarterly_earnings_tsla)
 
+# Company overview
 @app.route('/company-overview', methods=['GET'])
 def get_company_overview():
+    #Database connection
     conn = connect_to_db()
     cursor = conn.cursor()
 
+    #Get data from database with SQL
     cursor.execute(
         """
         SELECT symbol, asset_type, name, description, cik, exchange, currency, country, sector, industry,
@@ -305,9 +321,12 @@ def get_company_overview():
         FROM company_overview
         """
     )
+
+    #Fetch and close connection
     data = cursor.fetchall()
     conn.close()
 
+#Creating dictionary to structure data
     company_overview = [
         {
             "symbol": str(row[0]),
@@ -363,13 +382,15 @@ def get_company_overview():
             "dividend_date": str(row[50]) if row[50] else None,
             "ex_dividend_date": str(row[51]) if row[51] else None
         }
-        for row in data
+        for row in data 
     ]
-
+    #Return json
     return jsonify(company_overview)
 
+#Funds 
 @app.route('/funds', methods=['GET'])
 def get_funds():
+    #Database connection
     conn = connect_to_db()
     cursor = conn.cursor()
     
@@ -402,6 +423,7 @@ def get_funds():
         ORDER BY f.fund_id, s.sector_id, h.holding_id
     """)
     
+    # Fetch all rows and close connection
     rows = cursor.fetchall()
     conn.close()
     
@@ -451,9 +473,10 @@ def get_funds():
                 funds_dict[fund_id]["holdings"].append(holding)
     
     funds = list(funds_dict.values())
-    
+    #Return json
     return jsonify(funds)
 
+#Main
 if __name__ == '__main__':
     app.run(debug=True)
 
