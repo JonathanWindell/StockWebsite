@@ -33,7 +33,7 @@ def fundchart_horizontal():
 
 if __name__ == "__main__":
     fundchart_horizontal()
-"""
+
 
 def fundchart_circle():
     # Data och etiketter
@@ -85,3 +85,4 @@ def fundchart_circle():
 if __name__ == "__main__":
     fundchart_circle()
     
+"""
