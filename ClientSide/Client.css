@@ -229,18 +229,24 @@ h1 {
 
 /*Stock menu generic styling*/
 #StockMenu {
-    left: 800px;
-    position: absolute;
+    position: fixed; 
     display: flex;
+    gap: 10px;
     top: 130px;
-    gap: 10px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 100;
+    padding: 0 20px;
+    max-width: 100%;
 }
 
 /*Stock choices styling*/
 .stockChoices {
-    display: flex; 
-    flex-direction: row; 
-    gap: 10px; 
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /*Stock buttons styling*/
@@ -251,18 +257,21 @@ h1 {
     font-weight: bold;
     background-color: transparent;
     font-family: 'Courier New', Courier, monospace;
-    border: 2px solid #ccc; 
-    color: white; 
+    border: 2px solid #ccc;
+    color: white;
     cursor: pointer;
     border-radius: 10px;
     width: 125px;
     height: 50px;
-    margin-bottom: 10px;
-    margin-right: 20px;
     text-align: center;
     gap: 10px;
     transition: background-color 0.3s, color 0.3s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    flex: 1 1 auto;
+    min-width: 125px;
+    max-width: 200px;
+    justify-content: center;
+    align-items: center;
 }
 
 /*Button images*/
@@ -385,18 +394,23 @@ h1 {
 
 /*Annual earnings menu styling*/
 #AnnualEarningsMenu {
-    left: 800px;
-    position: absolute;
+    position: fixed; 
     display: flex;
-    top: 130px;
     gap: 10px;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 100;
+    padding: 0 20px;
+    max-width: 100%;
 }
 
-/*Annual earnings choices styling*/
 .annualEarningsChoices {
-    display: flex; 
-    flex-direction: row; 
-    gap: 10px; 
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /*Annual earnings buttons styling*/
@@ -407,8 +421,8 @@ h1 {
     font-weight: bold;
     background-color: transparent;
     font-family: 'Courier New', Courier, monospace;
-    border: 2px solid #ccc; 
-    color: white; 
+    border: 2px solid #ccc;
+    color: white;
     cursor: pointer;
     border-radius: 10px;
     width: 125px;
@@ -416,7 +430,12 @@ h1 {
     text-align: center;
     gap: 10px;
     transition: background-color 0.3s, color 0.3s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);  
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    flex: 1 1 auto;
+    min-width: 125px;
+    max-width: 200px;
+    justify-content: center;
+    align-items: center;
 }
 
 /*Annual earnings buttons hover effect*/
