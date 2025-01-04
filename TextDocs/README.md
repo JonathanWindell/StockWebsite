@@ -26,16 +26,17 @@ Tech Stack:
 This project leverages the following technologies:
    1: Flask: Lightweight web framework to build the backend and handle HTTP requests.
    2: PostgreSQL: Relational database to store stock data, earnings reports, and other relevant information.
-   3: Jinja2: Templating engine for rendering dynamic web pages based on data from the server.
-   4: JavaScript: Used for handling frontend interactivity and dynamic content rendering.
-   5: CSS/HTML: For creating a clean, responsive, and user-friendly layout.
-   6: Matplotlib: Used to generate charts for fund sectors.
+   3: Postman for API calls to structure database tables
+   4: Jinja2: Templating engine for rendering dynamic web pages based on data from the server.
+   5: JavaScript: Used for handling frontend interactivity and dynamic content rendering.
+   6: CSS/HTML: For creating a clean, responsive, and user-friendly layout.
+   7: Matplotlib: Used to generate charts for fund sectors.
 
 How It Works:
    1: Backend (Flask): The Flask server handles the routing and logic for data fetching, processing, and rendering. It interacts with the PostgreSQL database to 
      fetch stock data and news articles.
-   2: Database (PostgreSQL): The database stores stock prices, company earnings, and news articles. Data is fetched via API calls and stored in the database for 
-     efficient retrieval.
+   2: Database (PostgreSQL): The database stores stock prices, company earnings, quarterly and annual earnings. Data is fetched via API calls and stored in the database for 
+     efficient retrieval. 
    3: Frontend: HTML and CSS are used to create a clean, responsive design. JavaScript is used to fetch and display real-time data from the backend, updating charts and stock information dynamically.
 
 
@@ -57,9 +58,15 @@ To use the project install following.
 4: Windows applications
    1: Node JS
 (All requirements can be found in requirements.txt file)
-5: Database structure 
-   In this google drive file youo can find pictures of the structure of all tables and values of every column if you wish to copy this project to it's full extent
+5: Database structure and API calls
+   1: In this google drive file youo can find pictures of the structure of all tables and values of every column if you wish to copy this project to it's full extent
    link: https://drive.google.com/drive/folders/18NGqOODN0qvnev7C3T5KLFWjBSluiAGG?usp=drive_link
+   2: You can extrct all data using the Alpha Vantage API calls. The API calls that are used are following.
+      1: Intraday
+      2: Company Overview
+      3: Earnings (Note that Earnings are divided into Annual and Quarterly
+      4: ETF profile & Holdings
+   
 
 6: To run project run following command
    1: .\venv\Scripts\activate
