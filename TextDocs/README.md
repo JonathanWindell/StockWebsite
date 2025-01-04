@@ -19,8 +19,8 @@ This project helped me improve and develop skills in:
    4: Backend Development: Implementing server-side logic using Flask, handling data requests, and serving dynamic content.
    5: Data Visualization: Generating interactive charts and graphs with Matplotlib.
 
-Demo
-You can view a live demo of the project at [Live Demo Link].
+Demo 
+Some pictures from the project found on my personal portfolio. [https://jonathanwindell.github.io/PortfolioWebsiteGrey/]
 
 Tech Stack:
 This project leverages the following technologies:
