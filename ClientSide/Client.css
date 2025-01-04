@@ -607,24 +607,24 @@ h1 {
 .funds{
     color: white;
     position: absolute;
-    left: 300px;
-    top: 170px;
+    left: 21%;
+    top: 50px;
 }
 
 /*Sectors overview*/
 .sectors {
     color: white;
     position: absolute;
-    left: 750px;
-    top: 170px;
+    left: 39.5%;
+    top: 50px;
 }
 
 /*Holdings overview*/
 .holdings {
     color: white;
     position: absolute;
-    top: 880px;
-    left: 450px;
+    top: 50px;
+    left: 67%;
 }
 
 /*Funds table body*/
@@ -652,8 +652,8 @@ h1 {
 
 #fundsTableBody {
     position: absolute;
-    left: 250px;
-    top: 250px;
+    left: 18%;
+    top: 120px;
 }
 
 #fundsTableBody {
@@ -671,8 +671,8 @@ h1 {
 /*Sectors table body*/
 #sectorTableBody {
     position: absolute;
-    left: 700px;
-    top: 250px;
+    left: 37%;
+    top: 120px;
 }
 
 #sectorTableBody {
@@ -694,14 +694,14 @@ h1 {
 /*Holdings table body*/
 #holdingTableBody {
     position: absolute;
-    left: 250px;
-    top: 950px;
+    left: 55%;
+    top: 120px;
 }
 
 #holdingTableBody {
     color: white;
     background-color: #454545;
-    width: 600px;
+    width: 800px;
     border-radius: 5px;
     padding-left: 15px;
     padding-top: 5px;
@@ -711,7 +711,7 @@ h1 {
     column-count: 2;
     flex-direction: column;
     overflow-y: auto; 
-    max-height: 700px;
+    max-height: 605px;
 }
 
 .holding-item {
@@ -732,8 +732,8 @@ h1 {
 /*Fund charts*/
 #fundsChart {
     position: relative;
-    top: 70px;
-    left: 1300px;
+    top: 650px;
+    left: 35%;
     width: auto;
     height: auto;              
     padding: 10px;
