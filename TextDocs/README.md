@@ -57,8 +57,11 @@ To use the project install following.
 4: Windows applications
    1: Node JS
 (All requirements can be found in requirements.txt file)
+5: Database structure 
+   In this google drive file youo can find pictures of the structure of all tables and values of every column if you wish to copy this project to it's full extent
+   link: https://drive.google.com/drive/folders/18NGqOODN0qvnev7C3T5KLFWjBSluiAGG?usp=drive_link
 
-5: To run project run following command
+6: To run project run following command
    1: .\venv\Scripts\activate
    2: python DatabaseServer.py
    3: Live server 
@@ -72,6 +75,8 @@ Known Issues
    1: The stock data may is not updated in real-time due to limitations with the free API. I've instead decided to make requests to API and then save all data in 
    a database given that this is only a learning project. 
    2: Some charts may not render properly if there is insufficient data. Example is Company Overview for TSLA & AMZN
+
+   
 
    
 
