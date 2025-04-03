@@ -20,7 +20,7 @@ This project helped me improve and develop skills in:
    5: Data Visualization: Generating interactive charts and graphs with Matplotlib.
 
 Demo 
-Some pictures from the project found on my personal portfolio. [https://jonathanwindell.github.io/PortfolioWebsiteGrey/]
+Some pictures from the project found on my personal portfolio. [https://jonathanwindell.github.io/PersonalPortfolio/]
 
 Tech Stack:
 This project leverages the following technologies:
